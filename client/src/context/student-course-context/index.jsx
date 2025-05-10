@@ -1,0 +1,70 @@
+import {
+  fetchCourseDetails,
+  fetchFilterCourse,
+} from "@/service/student-course";
+import { fetchMyCourse } from "@/service/student-order-course";
+import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+export const StudentCourseContext = createContext(null);
+
+function StudentCourseContextProvider({ children }) {
+  // const navigate = useNavigate();
+  const [courseFilterList, setCourseFilterList] = useState([]);
+  const [courseDetails, setCourseDetails] = useState(null);
+  const [myCourseList, setMyCourseList] = useState([]);
+
+  const [loading, setLoading] = useState(false);
+
+  async function fetchMyCourseList() {
+    setLoading(true);
+    const result = await fetchMyCourse();
+    if (result.success) {
+      setMyCourseList(result.data);
+      setLoading(false);
+    } else {
+      setMyCourseList([]);
+      setLoading(false);
+    }
+  }
+
+  async function fetchCourseDetailsData(courseId) {
+    setLoading(true);
+    const result = await fetchCourseDetails(courseId);
+    if (result.success) {
+      setCourseDetails(result.data);
+      setLoading(false);
+    } else {
+      setCourseDetails(null);
+      setLoading(false);
+    }
+  }
+
+  async function fetchData(filter, sort) {
+    setLoading(true);
+    const result = await fetchFilterCourse(filter, sort);
+    if (result.success) {
+      setCourseFilterList(result.data);
+      setLoading(false);
+    } else {
+      setLoading(false);
+      setCourseFilterList([]);
+    }
+  }
+  return (
+    <StudentCourseContext.Provider
+      value={{
+        courseFilterList,
+        loading,
+        fetchData,
+        courseDetails,
+        fetchCourseDetailsData,
+        myCourseList,
+        fetchMyCourseList,
+      }}
+    >
+      {children}
+    </StudentCourseContext.Provider>
+  );
+}
+
+export default StudentCourseContextProvider;
