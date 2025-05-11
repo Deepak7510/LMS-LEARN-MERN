@@ -1,5 +1,24 @@
 import mongoose from "mongoose";
 
+const lectureSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  freePreview: {
+    type: Boolean,
+    required: true,
+  },
+  videoUrl: {
+    type: String,
+    required: true,
+  },
+  public_id: {
+    type: String,
+    required: true,
+  },
+});
+
 const courseSchema = new mongoose.Schema(
   {
     instructor: {
@@ -63,27 +82,7 @@ const courseSchema = new mongoose.Schema(
         required: true,
       },
     },
-
-    curriculum: [
-      {
-        title: {
-          type: String,
-          required: true,
-        },
-        freePreview: {
-          type: Boolean,
-          required: true,
-        },
-        videoUrl: {
-          type: String,
-          required: true,
-        },
-        public_id: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
+    curriculum: [lectureSchema],
     isPublised: {
       type: Boolean,
       default: true,

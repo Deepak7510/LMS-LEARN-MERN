@@ -4,7 +4,6 @@ import {
 } from "@/service/student-course";
 import { fetchMyCourse } from "@/service/student-order-course";
 import { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 export const StudentCourseContext = createContext(null);
 
 function StudentCourseContextProvider({ children }) {
@@ -12,6 +11,7 @@ function StudentCourseContextProvider({ children }) {
   const [courseFilterList, setCourseFilterList] = useState([]);
   const [courseDetails, setCourseDetails] = useState(null);
   const [myCourseList, setMyCourseList] = useState([]);
+  const [progressCourseDetails, setProgressCourseDetails] = useState(null);
 
   const [loading, setLoading] = useState(false);
 
@@ -60,6 +60,9 @@ function StudentCourseContextProvider({ children }) {
         fetchCourseDetailsData,
         myCourseList,
         fetchMyCourseList,
+        progressCourseDetails,
+        setProgressCourseDetails,
+        setLoading,
       }}
     >
       {children}

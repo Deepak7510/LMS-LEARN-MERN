@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { StudentCourseContext } from "@/context/student-course-context";
+import { checkCurseBuyStatus } from "@/service/student-order-course";
 import {
   BadgeCheck,
   Calendar,
@@ -19,7 +20,7 @@ import {
   UserRoundPen,
 } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const decodeHTML = (html) => {
   const parser = new DOMParser();
@@ -30,6 +31,8 @@ function StudentCourseDetailsPage() {
   const [openPreviewDialog, setOpenPreviewDialog] = useState(false);
   const [coursePreviewData, setCoursePreviewData] = useState(null);
   const { courseId } = useParams();
+
+  const navigate = useNavigate();
   const {
     loading: courseDetailsLoading,
     courseDetails,
@@ -38,6 +41,16 @@ function StudentCourseDetailsPage() {
 
   useEffect(() => {
     fetchCourseDetailsData(courseId);
+  }, [courseId]);
+
+  useEffect(() => {
+    checkCurseBuyStatus(courseId).then((result) => {
+      if (result.success) {
+        if (result.data.status) {
+          return navigate(`/course-progress/${courseId}`);
+        }
+      }
+    });
   }, [courseId]);
 
   const freePreviewDataIndex =

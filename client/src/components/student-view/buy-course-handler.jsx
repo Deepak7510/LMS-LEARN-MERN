@@ -38,6 +38,7 @@ function BuyCourseHandler({ courseDetails }) {
           formData.razorpayOrderId = response.razorpay_order_id;
           formData.razorpaySignature = response.razorpay_signature;
           const createOrderResult = await createOrder(formData);
+          console.log(createOrderResult);
           if (createOrderResult.success) {
             toast.success(createOrderResult.message);
             return navigate("/my-courses");

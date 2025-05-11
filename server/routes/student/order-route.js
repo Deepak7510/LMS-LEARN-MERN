@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  checkCourseBuyOrNot,
   createOrder,
   createRazorpayOrder,
   fetchMyCourseList,
@@ -10,6 +11,7 @@ import isAuthenticated from "../../middleware/isAuthenticated.js";
 
 route.post("/create-razorpay-order", isAuthenticated, createRazorpayOrder);
 route.post("/create", isAuthenticated, createOrder);
-route.post("/fetch-my-courses", isAuthenticated, fetchMyCourseList);
+route.get("/fetch-my-courses", isAuthenticated, fetchMyCourseList);
+route.get("/check-buy-status/:courseId", isAuthenticated, checkCourseBuyOrNot);
 
 export default route;

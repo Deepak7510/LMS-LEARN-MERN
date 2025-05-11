@@ -24,9 +24,9 @@ function StudentHomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-white border space-y-10 py-18 px-28">
+    <div className="min-h-screen bg-white border space-y-5 md:space-y-10 py-18 px-4 sm:px-6 lg:px-10 xl:px-28">
       <section className="flex flex-col md:flex-row justify-center items-center">
-        <div className="h-full w-1/2 items-center space-y-1 px-4">
+        <div className="h-full w-full md:w-1/2 items-center space-y-1 p-4">
           <h1 className="text-4xl font-extrabold">Learning that gets you</h1>
           <p className="text-lg">
             Skill for your present and your future. Get Started with us
@@ -43,7 +43,7 @@ function StudentHomePage() {
 
       <section className="w-full">
         <h1 className="text-2xl mb-5 font-extrabold">Course Categories</h1>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-5">
           {categoryListLoading
             ? Array(8)
                 .fill(null)
@@ -67,7 +67,7 @@ function StudentHomePage() {
       </section>
       <section className="w-full">
         <h1 className="text-2xl mb-5 font-extrabold">Featured Courses</h1>
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {courseListLoading
             ? Array(8)
                 .fill(null)

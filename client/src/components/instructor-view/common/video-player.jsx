@@ -1,6 +1,25 @@
+import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 
-function VideoPlayer({ height = "100%", width = "100%", url }) {
+function VideoPlayer({
+  height = "100%",
+  width = "100%",
+  url,
+  onUpdateProgress,
+  currentLecture,
+}) {
+  const [played, setPlayed] = useState(null);
+
+  useEffect(() => {
+    if (played === 1 && onUpdateProgress && currentLecture) {
+      onUpdateProgress({ ...currentLecture, progressValue: 1 });
+    }
+  }, [played]);
+
+  function handleProgress({ played }) {
+    setPlayed(played);
+  }
+
   return (
     <div
       className={`relative rounded-lg bg-slate-900 overflow-hidden shadow-2xl transition-all duration-300 ease-in-out`}
@@ -11,6 +30,7 @@ function VideoPlayer({ height = "100%", width = "100%", url }) {
         width="100%"
         height="100%"
         url={url}
+        onProgress={handleProgress}
         controls
       ></ReactPlayer>
     </div>

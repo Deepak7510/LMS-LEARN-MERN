@@ -28,8 +28,20 @@ export const createOrder = async function (formData) {
 
 export const fetchMyCourse = async function () {
   try {
-    const response = await axiosInstance.post(
+    const response = await axiosInstance.get(
       "/api/student/order/fetch-my-courses"
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return error.response.data;
+  }
+};
+
+export const checkCurseBuyStatus = async function (courseId) {
+  try {
+    const response = await axiosInstance.get(
+      `/api/student/order/check-buy-status/${courseId}`
     );
     return response.data;
   } catch (error) {

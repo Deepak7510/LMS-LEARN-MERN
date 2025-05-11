@@ -77,7 +77,11 @@ function StudentCoursePage() {
       <main className="w-full relative overflow-y-auto h-screen pt-14">
         <FilterCourseHeader sort={sort} setSort={setSort} />
         <div className={"px-5 py-3"}>
-          <div className={"grid grid-cols-2 lg:grid-cols-3 gap-4"}>
+          <div
+            className={
+              "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4"
+            }
+          >
             {loading ? (
               ""
             ) : courseFilterList && courseFilterList.length > 0 ? (

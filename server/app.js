@@ -33,6 +33,7 @@ import StudentLevelRouter from "./routes/student/level-route.js";
 import StudentLanguageRouter from "./routes/student/language-route.js";
 import StudentCourseRouter from "./routes/student/course-route.js";
 import StudentCourseOrderRouter from "./routes/student/order-route.js";
+import StudentCourseProgressRouter from "./routes/student/course-progress-route.js";
 
 app.use("/api/auth", AuthRouter);
 app.use("/api/media", MediaRouter);
@@ -49,6 +50,7 @@ app.use("/api/student/level", StudentLevelRouter);
 app.use("/api/student/language", StudentLanguageRouter);
 app.use("/api/student/course", StudentCourseRouter);
 app.use("/api/student/order", StudentCourseOrderRouter);
+app.use("/api/student/progress", StudentCourseProgressRouter);
 
 app.use(handleGlobalError);
 export default app;

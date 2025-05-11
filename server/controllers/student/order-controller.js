@@ -107,3 +107,24 @@ export const fetchMyCourseList = asyncHandler(async (req, res, next) => {
     .status(201)
     .json(new ApiResponse(200, "My course fetch successfully.", myCourseList));
 });
+
+export const checkCourseBuyOrNot = asyncHandler(async (req, res, next) => {
+  const userId = req.user.id;
+  const { courseId } = req.params;
+
+  if (!courseId || !userId) {
+    return next(new ApiError(403, "Course Id and User Id is required."));
+  }
+
+  let status = false;
+  const result = await Order.findOne({ user: userId, course: courseId });
+  if (result) {
+    status = true;
+  }
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, "Course buy status check successfully.", { status })
+    );
+});
