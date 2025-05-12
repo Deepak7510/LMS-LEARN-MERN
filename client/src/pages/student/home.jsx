@@ -3,7 +3,9 @@ import bannerImg from "../../assets/banner-img.png";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useNavigate } from "react-router-dom";
-import CourseCardTile from "@/components/student-view/common/course-card-tile";
+import CourseCardTile from "@/components/student-view/course-card-tile";
+import { useTheme } from "next-themes";
+import CourseCardTileSkeleton from "@/components/student-view/Skeleton/course-card-tile-skeleton";
 
 function StudentHomePage() {
   const navigate = useNavigate();
@@ -23,8 +25,10 @@ function StudentHomePage() {
     return navigate("/courses");
   }
 
+  const { themes } = useTheme();
+
   return (
-    <div className="min-h-screen bg-white border space-y-5 md:space-y-10 py-18 px-4 sm:px-6 lg:px-10 xl:px-28">
+    <div className="min-h-screen space-y-5 md:space-y-10 py-18 px-4 sm:px-6 lg:px-10 xl:px-28">
       <section className="flex flex-col md:flex-row justify-center items-center">
         <div className="h-full w-full md:w-1/2 items-center space-y-1 p-4">
           <h1 className="text-4xl font-extrabold">Learning that gets you</h1>
@@ -55,7 +59,13 @@ function StudentHomePage() {
                 return (
                   <Button
                     key={item._id}
-                    className={"bg-neutral-700 cursor-pointer"}
+                    className={`${
+                      themes === "dark"
+                        ? "bg-white"
+                        : themes === "light"
+                        ? "bg-zinc-950"
+                        : ""
+                    } cursor-pointer`}
                     onClick={() => handleCategoryRedirect(item._id)}
                   >
                     {item.name}
@@ -69,10 +79,10 @@ function StudentHomePage() {
         <h1 className="text-2xl mb-5 font-extrabold">Featured Courses</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {courseListLoading
-            ? Array(8)
+            ? Array(6)
                 .fill(null)
                 .map((_, index) => {
-                  return <Skeleton key={index} className={"w-full h-10"} />;
+                  return <CourseCardTileSkeleton key={index} />;
                 })
             : courseList && courseList.length > 0
             ? courseList.map((item) => {

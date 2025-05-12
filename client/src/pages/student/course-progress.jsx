@@ -115,7 +115,6 @@ function StudentCourseProgressPage() {
     }
   }
 
-  console.log(progressCourseDetails);
   return (
     <div className="w-full">
       {courseProgressLoading ? (
@@ -151,7 +150,7 @@ function StudentCourseProgressPage() {
             </DialogContent>
           </Dialog>
           {progressCourseDetails ? (
-            <div className="py-18 px-2 lg:px-20 min-h-screen bg-black">
+            <div className="py-18 px-2 lg:px-20 min-h-screen bg-zinc-950">
               <Button
                 onClick={() => navigate("/my-courses")}
                 className={"mb-2"}

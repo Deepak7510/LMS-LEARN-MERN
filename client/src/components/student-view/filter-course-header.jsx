@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { sortOptions } from "@/config";
 import { DropdownMenuRadioItem } from "@radix-ui/react-dropdown-menu";
+import { useTheme } from "../theme/theme-provider";
 
 function FilterCourseHeader({ sort, setSort }) {
   const { toggleSidebar } = useSidebar();
@@ -20,9 +21,14 @@ function FilterCourseHeader({ sort, setSort }) {
   function handleSort(getSortValue) {
     setSort(getSortValue);
   }
+  const { theme } = useTheme();
 
   return (
-    <header className="py-2 px-6 border-b h-12 flex sticky top-0 bg-white justify-between md:justify-end">
+    <header
+      className={`${
+        theme === "dark" ? "bg-zinc-950" : theme === "light" ? "bg-white" : ""
+      } py-2 px-6 border-b-2 h-12 flex sticky top-0 justify-between md:justify-end`}
+    >
       <Button
         variant={"outline"}
         size={"sm"}

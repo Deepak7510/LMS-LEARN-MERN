@@ -18,6 +18,7 @@ import StudentCoursePage from "./pages/student/courses";
 import StudentCourseDetailsPage from "./pages/student/course-details";
 import StudentMyCoursesPage from "./pages/student/my-courses";
 import StudentCourseProgressPage from "./pages/student/course-progress";
+import StudentAboutUsPage from "./pages/student/aboutus";
 
 function App() {
   const {
@@ -55,6 +56,7 @@ function App() {
         <Route index element={<StudentHomePage />} />
         <Route index path="home" element={<StudentHomePage />} />
         <Route index path="courses" element={<StudentCoursePage />} />
+        <Route index path="/about-us" element={<StudentAboutUsPage />} />
 
         <Route
           index

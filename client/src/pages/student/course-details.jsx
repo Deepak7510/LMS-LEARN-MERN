@@ -75,7 +75,7 @@ function StudentCourseDetailsPage() {
         </div>
       ) : (
         <div>
-          <div className="bg-slate-900 px-40 py-20 space-y-5">
+          <div className="bg-zinc-950 px-40 py-20 space-y-5">
             <div className="font-semibold text-purple-300">
               <span> {courseDetails?.category.name}</span>
               <span>{">"}</span>

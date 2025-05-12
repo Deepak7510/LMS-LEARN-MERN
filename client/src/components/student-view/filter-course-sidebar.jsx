@@ -11,11 +11,18 @@ import {
 import useFetch from "@/hooks/useFetch";
 import { Label } from "../ui/label";
 import { Checkbox } from "../ui/checkbox";
+import { Skeleton } from "../ui/skeleton";
 
 function FilterCoursesSidebar({ filter, handleFilter }) {
-  const { data: categoryList } = useFetch("/api/student/category/fetch-active");
-  const { data: levelList } = useFetch("/api/student/level/fetch-active");
-  const { data: languageList } = useFetch("/api/student/language/fetch-active");
+  const { loading: categoryLoading, data: categoryList } = useFetch(
+    "/api/student/category/fetch-active"
+  );
+  const { loading: levelLoading, data: levelList } = useFetch(
+    "/api/student/level/fetch-active"
+  );
+  const { loading: languageLoading, data: languageList } = useFetch(
+    "/api/student/language/fetch-active"
+  );
   return (
     <Sidebar className={"absolute z-0 py-6 top-0 left-0"}>
       <div className="mt-10 mb-2 ps-3">
@@ -26,8 +33,13 @@ function FilterCoursesSidebar({ filter, handleFilter }) {
           <SidebarGroupLabel className={"text-md"}>Category</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {categoryList &&
-                categoryList.length > 0 &&
+              {categoryLoading ? (
+                Array(6)
+                  .fill(null)
+                  .map((_, index) => (
+                    <Skeleton className={"h-5 my-1 w-full"} key={index} />
+                  ))
+              ) : categoryList && categoryList.length > 0 ? (
                 categoryList?.map((item) => (
                   <SidebarMenuItem key={item._id}>
                     <SidebarMenuButton asChild>
@@ -50,7 +62,10 @@ function FilterCoursesSidebar({ filter, handleFilter }) {
                       </div>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
-                ))}
+                ))
+              ) : (
+                <div>No Category</div>
+              )}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -58,8 +73,13 @@ function FilterCoursesSidebar({ filter, handleFilter }) {
           <SidebarGroupLabel className={"text-md"}>Level</SidebarGroupLabel>
           <SidebarGroupContent className={""}>
             <SidebarMenu>
-              {levelList &&
-                levelList.length > 0 &&
+              {levelLoading ? (
+                Array(6)
+                  .fill(null)
+                  .map((_, index) => (
+                    <Skeleton className={"h-5 my-1 w-full"} key={index} />
+                  ))
+              ) : levelList && levelList.length > 0 ? (
                 levelList?.map((item) => (
                   <SidebarMenuItem key={item._id}>
                     <SidebarMenuButton asChild>
@@ -78,7 +98,10 @@ function FilterCoursesSidebar({ filter, handleFilter }) {
                       </div>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
-                ))}
+                ))
+              ) : (
+                <div>No Level</div>
+              )}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -86,8 +109,13 @@ function FilterCoursesSidebar({ filter, handleFilter }) {
           <SidebarGroupLabel className={"text-md"}>Language</SidebarGroupLabel>
           <SidebarGroupContent className={""}>
             <SidebarMenu>
-              {languageList &&
-                languageList.length > 0 &&
+              {languageLoading ? (
+                Array(6)
+                  .fill(null)
+                  .map((_, index) => (
+                    <Skeleton className={"h-5 my-1 w-full"} key={index} />
+                  ))
+              ) : languageList && languageList.length > 0 ? (
                 languageList?.map((item) => (
                   <SidebarMenuItem key={item._id}>
                     <SidebarMenuButton asChild>
@@ -106,7 +134,10 @@ function FilterCoursesSidebar({ filter, handleFilter }) {
                       </div>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
-                ))}
+                ))
+              ) : (
+                <div>No Level</div>
+              )}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

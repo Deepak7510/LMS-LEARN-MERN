@@ -1,4 +1,5 @@
 import MyCourseTile from "@/components/student-view/my-course-tile";
+import MyCourseTileSkeleton from "@/components/student-view/Skeleton/my-course-tile-skeleton";
 import { Skeleton } from "@/components/ui/skeleton";
 import { StudentCourseContext } from "@/context/student-course-context";
 import { useContext, useEffect } from "react";
@@ -19,10 +20,10 @@ function StudentMyCoursesPage() {
       <h1 className="text-2xl mb-5 font-extrabold">My Courses</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {mycourseListLoading
-          ? Array(8)
+          ? Array(9)
               .fill(null)
               .map((_, index) => {
-                return <Skeleton key={index} className={"w-full h-10"} />;
+                return <MyCourseTileSkeleton key={index} />;
               })
           : myCourseList && myCourseList.length > 0
           ? myCourseList.map((item) => {
