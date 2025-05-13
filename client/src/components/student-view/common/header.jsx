@@ -7,7 +7,8 @@ import { useTheme } from "@/components/theme/theme-provider";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { useState } from "react";
 import { Label } from "@/components/ui/label";
-
+import { Skeleton } from "@/components/ui/skeleton";
+Skeleton;
 function StudentHeaderNav() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -63,7 +64,7 @@ function StudentHeader() {
     <header
       className={`${
         theme === "dark" ? "bg-zinc-950" : theme === "light" ? "bg-white" : ""
-      } flex justify-between items-center shadow-lg fixed w-full border-b-2 py-3 px-6 z-10 select-none`}
+      } flex justify-between items-center shadow fixed w-full border-b-2 py-3 px-6 z-10 select-none`}
     >
       <div className="flex items-center space-x-4">
         <Link to={"/home"} className="flex items-center gap-3">

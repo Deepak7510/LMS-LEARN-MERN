@@ -1,93 +1,76 @@
+import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 export default function StudentAboutUsPage() {
   return (
-    <div className="px-28 py-20 text-gray-800">
-      <h1 className="text-4xl font-bold mb-4 text-gray-900">About Us</h1>
-      <Separator className="mb-6" />
-
-      <section className="space-y-4 text-base leading-relaxed">
-        <p>
-          <strong>Welcome to Learn Web</strong> — your trusted platform to
-          master the world of modern web development.
-        </p>
-
-        <p>
-          At Learn Web, we believe <em>learning by doing</em> is the most
-          effective way to grow. That’s why we focus on practical, hands-on
-          learning through real-world projects. Whether you're a beginner
-          starting with HTML and CSS or an advanced developer looking to upgrade
-          with React, Laravel, or Node.js — we’ve got you covered.
-        </p>
+    <div className="sm:px-6 lg:px-10 xl:px-28 py-20">
+      <section class="py-10 px-6 text-center">
+        <h1 className="text-5xl font-bold">
+          Welcome to where possibilities begin
+        </h1>
+        {/* <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4" alt="Learning" class="mx-auto mt-10 w-full max-w-3xl rounded-xl shadow-lg"> */}
       </section>
 
-      <Separator className="my-8" />
-
-      <section className="space-y-3">
-        <h2 className="text-2xl font-semibold text-gray-900">🚀 Our Mission</h2>
-        <p>
-          To empower learners by providing high-quality, accessible, and
-          project-based web development education that builds real-world skills
-          and job readiness.
-        </p>
+      <section className="grid grid-cols-1 lg:grid-cols-2 justify-center py-15 px-4 gap-8">
+        <div>
+          <h1 class="text-3xl font-bold">Empowering Learning Everywhere</h1>
+          <p class="text-base">
+            We’re on a mission to connect people through knowledge and help them
+            grow in their careers, one course at a time.
+          </p>
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold">
+            Skills are the key to unlocking potential
+          </h1>
+          <p className="text-base">
+            Whether you want to learn a new skill, train your teams, or share
+            what you know with the world, you’re in the right place. As a leader
+            in online learning, we’re here to help you achieve your goals and
+            transform your life.
+          </p>
+        </div>
       </section>
 
-      <Separator className="my-8" />
-
-      <section className="space-y-3">
-        <h2 className="text-2xl font-semibold text-gray-900">
-          🎯 What We Offer
-        </h2>
-        <ul className="list-disc list-inside space-y-1 text-gray-700">
-          <li>Structured courses with real projects</li>
-          <li>Expert guidance and beginner-friendly lessons</li>
-          <li>Regular updates to match industry trends</li>
-          <li>Certificate of completion</li>
-          <li>Community support and mentorship</li>
-        </ul>
+      <section>
+        <Card className="py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            <div>
+              <div className="flex justify-around">
+                <div className="text-center">
+                  <div className="font-extrabold text-3xl">79M+</div>
+                  <div className="font-medium">Learners</div>
+                </div>
+                <div className="text-center">
+                  <div className="font-extrabold text-3xl">85K</div>
+                  <div className="font-medium">Instructors</div>
+                </div>
+              </div>
+              <div className="text-center mt-5">
+                <div className="font-extrabold text-3xl">75</div>
+                <div className="font-medium">Language</div>
+              </div>
+            </div>
+            <div>
+              <div className="flex justify-around">
+                <div className="text-center">
+                  <div className="font-extrabold text-3xl">250K</div>
+                  <div className="font-medium">Courses</div>
+                </div>
+                <div className="text-center">
+                  <div className="font-extrabold text-3xl">1.1B+</div>
+                  <div className="font-medium">Course enrollments</div>
+                </div>
+              </div>
+              <div className="text-center mt-5">
+                <div className="font-extrabold text-3xl">17K+</div>
+                <div className="font-medium">Enterprise customers</div>
+              </div>
+            </div>
+          </div>
+        </Card>
       </section>
-
-      <Separator className="my-8" />
-
-      <section className="space-y-3">
-        <h2 className="text-2xl font-semibold text-gray-900">
-          💼 Who Can Join?
-        </h2>
-        <p>
-          Students, job-seekers, professionals, entrepreneurs — anyone
-          passionate about learning web development can benefit from our
-          platform.
-        </p>
-      </section>
-
-      <Separator className="my-8" />
-
-      <section className="space-y-3">
-        <h2 className="text-2xl font-semibold text-gray-900">🤝 Our Vision</h2>
-        <p>
-          To become the leading platform for web development education in India
-          and beyond, helping thousands of learners become confident developers
-          and creators.
-        </p>
-      </section>
-
-      <Separator className="my-8" />
-
-      <section className="space-y-3">
-        <h2 className="text-2xl font-semibold text-gray-900">
-          📩 Get In Touch
-        </h2>
-        <p>
-          Have questions or suggestions? Reach out to us at{" "}
-          <a
-            href="mailto:support@learnweb.com"
-            className="text-blue-600 underline"
-          >
-            support@learnweb.com
-          </a>{" "}
-          — we’re always happy to help!
-        </p>
-      </section>
+      <Separator className={"mt-10"} />
     </div>
   );
 }

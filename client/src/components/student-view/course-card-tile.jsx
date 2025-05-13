@@ -6,10 +6,10 @@ function CourseCardTile({ courseDetails }) {
   return (
     <Card
       onClick={() => navigate(`/course-details/${courseDetails._id}`)}
-      className={"py-4 shadow-none cursor-pointer"}
+      className={"py-2.5 shadow-lg cursor-pointer"}
     >
-      <CardContent className={"px-4 space-y-2"}>
-        <div className="w-full h-52 rounded-lg overflow-hidden">
+      <CardContent className={"px-2.5 space-y-2"}>
+        <div className="w-full h-44 md:h-40 rounded-lg overflow-hidden">
           <img
             src={courseDetails.image.image_url}
             className="h-full w-full object-cover"
@@ -17,8 +17,10 @@ function CourseCardTile({ courseDetails }) {
           />
         </div>
         <div>
-          <h1 className={"font-semibold text-lg"}>{courseDetails.title}</h1>
-          <p className={"text-gray-600 text-base"}>
+          <h1 className={"font-semibold text-[1.03rem] line-clamp-1"}>
+            {courseDetails.title}
+          </h1>
+          <p className={"text-gray-600 text-sm"}>
             {courseDetails?.instructor?.username}
           </p>
           <p className="font-semibold text-lg">₹ {courseDetails.pricing}</p>

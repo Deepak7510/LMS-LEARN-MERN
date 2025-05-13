@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useNavigate } from "react-router-dom";
 import CourseCardTile from "@/components/student-view/course-card-tile";
-import { useTheme } from "next-themes";
 import CourseCardTileSkeleton from "@/components/student-view/Skeleton/course-card-tile-skeleton";
+import { useTheme } from "@/components/theme/theme-provider";
 
 function StudentHomePage() {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ function StudentHomePage() {
     return navigate("/courses");
   }
 
-  const { themes } = useTheme();
+  const { theme } = useTheme();
 
   return (
     <div className="min-h-screen space-y-5 md:space-y-10 py-18 px-4 sm:px-6 lg:px-10 xl:px-28">
@@ -47,7 +47,7 @@ function StudentHomePage() {
 
       <section className="w-full">
         <h1 className="text-2xl mb-5 font-extrabold">Course Categories</h1>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
           {categoryListLoading
             ? Array(8)
                 .fill(null)
@@ -60,10 +60,10 @@ function StudentHomePage() {
                   <Button
                     key={item._id}
                     className={`${
-                      themes === "dark"
+                      theme === "dark"
                         ? "bg-white"
-                        : themes === "light"
-                        ? "bg-zinc-950"
+                        : theme === "light"
+                        ? "bg-zinc-700"
                         : ""
                     } cursor-pointer`}
                     onClick={() => handleCategoryRedirect(item._id)}
@@ -77,7 +77,7 @@ function StudentHomePage() {
       </section>
       <section className="w-full">
         <h1 className="text-2xl mb-5 font-extrabold">Featured Courses</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
           {courseListLoading
             ? Array(6)
                 .fill(null)

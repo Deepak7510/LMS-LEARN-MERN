@@ -5,9 +5,9 @@ import { Button } from "../ui/button";
 function MyCourseTile({ courseDetails }) {
   const navigate = useNavigate();
   return (
-    <Card className={"py-4 shadow-none"}>
-      <CardContent className={"px-4 space-y-1"}>
-        <div className="w-full h-52 rounded-lg overflow-hidden">
+    <Card className={"py-2.5 shadow-none"}>
+      <CardContent className={"px-2.5 space-y-1"}>
+        <div className="w-full h-44 md:h-40 rounded-lg overflow-hidden">
           <img
             src={courseDetails.image?.image_url}
             className="h-full w-full object-cover"
@@ -15,13 +15,16 @@ function MyCourseTile({ courseDetails }) {
           />
         </div>
         <div>
-          <h1 className={"font-semibold text-lg"}>{courseDetails.title}</h1>
-          <p className={"text-gray-600 text-base"}>
+          <h1 className={"font-semibold text-[1.03rem] line-clamp-1"}>
+            {courseDetails.title}
+          </h1>
+          <p className={"text-gray-600 text-sm"}>
             {courseDetails?.instructor?.username}
           </p>
           {/* <p className="font-semibold text-lg">₹ {courseDetails.pricing}</p> */}
         </div>
         <Button
+          size={"sm"}
           onClick={() => navigate(`/course-progress/${courseDetails._id}`)}
           className={"w-full cursor-pointer"}
         >
