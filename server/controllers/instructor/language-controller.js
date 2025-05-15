@@ -78,7 +78,7 @@ export const updateLanguage = asyncHandler(async (req, res, next) => {
 });
 
 export const fetchLanguage = asyncHandler(async (req, res, next) => {
-  const languageList = await Language.find();
+  const languageList = await Language.find().sort({ _id: -1 });
   return res
     .status(200)
     .json(new ApiResponse(200, "Language fetched successfully", languageList));

@@ -20,6 +20,7 @@ import StudentMyCoursesPage from "./pages/student/my-courses";
 import StudentCourseProgressPage from "./pages/student/course-progress";
 import StudentAboutUsPage from "./pages/student/aboutus";
 import StudentContactPage from "./pages/student/contact";
+import InstructorMessagePage from "./pages/instructor/message";
 
 function App() {
   const {
@@ -99,6 +100,7 @@ function App() {
         <Route path="courses" element={<InstructorCoursePage />} />
         <Route path="add-new-course" element={<InstructorAddCoursePage />} />
         <Route path="edit-course/:id" element={<InstructorAddCoursePage />} />
+        <Route index path="message" element={<InstructorMessagePage />} />
       </Route>
 
       <Route path="*" element={<NotFoundPage />} />

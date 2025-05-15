@@ -1,4 +1,4 @@
-import { UploadMedia } from "@/service/media";
+import { uploadMediaService } from "@/service/media";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -10,7 +10,7 @@ function CourseSettings({ form }) {
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append("file", file);
-    const result = await UploadMedia(formData);
+    const result = await uploadMediaService(formData);
     if (result.success) {
       form.setValue("image", {
         image_url: result.data.secure_url,
@@ -18,6 +18,7 @@ function CourseSettings({ form }) {
       });
     }
   }
+
   return (
     <Card className={"shadow-none"}>
       <CardHeader>

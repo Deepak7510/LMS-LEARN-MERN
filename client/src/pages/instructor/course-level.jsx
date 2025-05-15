@@ -31,9 +31,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { z } from "zod";
 import { toast } from "sonner";
-import { createLevel, updateLevel } from "@/service/level";
-import { LevelContext } from "@/context/level-context";
-import TableRowSheletonOne from "@/components/instructor-view/common/table-row-skeleton-1";
+import {
+  createLevelService,
+  updateLevelService,
+} from "@/service/instructor/level";
+import { LevelContext } from "@/context/instructor/level-context";
+import TableRowSheletonOne from "@/components/instructor-view/skeleton/table-row-skeleton-1";
 import LevelListTableRow from "@/components/instructor-view/level-table-row";
 
 const formSchema = z.object({
@@ -60,9 +63,9 @@ function InstructorCourseLevelPage() {
   async function onSubmit(formData) {
     let response;
     if (editId === null) {
-      response = await createLevel(formData);
+      response = await createLevelService(formData);
     } else {
-      response = await updateLevel(formData, editId);
+      response = await updateLevelService(formData, editId);
     }
     if (response.success) {
       await fetchData();

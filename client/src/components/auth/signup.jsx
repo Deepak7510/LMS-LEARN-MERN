@@ -19,7 +19,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { signupUser } from "@/service/auth";
+import { signupUserService } from "@/service/auth";
 import { toast } from "sonner";
 const formSchema = z.object({
   username: z.string().nonempty("Username is required.").min(2, {
@@ -45,7 +45,7 @@ function SignUp({ setActiveTab }) {
   });
 
   async function onSubmit(data) {
-    const result = await signupUser(data);
+    const result = await signupUserService(data);
     console.log(result);
     if (result.success) {
       toast.success(result.message);

@@ -1,10 +1,15 @@
 import { AlignJustify, GraduationCap } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../../ui/button";
-import HandleLogout from "../../instructor-view/common/handle-logout";
+import HandleLogout from "../../common/handle-logout";
 import { ModeToggle } from "@/components/theme/mode-toggle";
 import { useTheme } from "@/components/theme/theme-provider";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -87,7 +92,12 @@ function StudentHeader() {
 
         {/* for Mobile navbar */}
         <Sheet open={openSideNavbar} onOpenChange={setOpenSideNavbar}>
-          <SheetContent side="left" className={"ps-6 pt-6"}>
+          <SheetContent
+            aria-describedby={undefined}
+            side="left"
+            className={"ps-6 pt-6"}
+          >
+            <SheetTitle className={"hidden"}></SheetTitle>
             <StudentHeaderNav />
             <div className="absolute bottom-4 left-4">
               <StudentHeaderRightSideContent />

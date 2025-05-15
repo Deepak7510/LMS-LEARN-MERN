@@ -5,20 +5,20 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { StudentCourseContext } from "@/context/student-course-context";
 import {
   fetchCourseProgressService,
   markCurrentCourseProgressService,
   resetCourseProgressService,
-} from "@/service/course-progress";
+} from "@/service/student/course-progress";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Confetti from "react-confetti";
-import VideoPlayer from "@/components/instructor-view/common/video-player";
 import { Label } from "@/components/ui/label";
 import { Check, Play } from "lucide-react";
 import { toast } from "sonner";
+import { StudentCourseContext } from "@/context/student/student-course-context";
+import VideoPlayer from "@/components/common/video-player";
 
 function StudentCourseProgressPage() {
   const {

@@ -79,7 +79,7 @@ export const updateCategory = asyncHandler(async (req, res, next) => {
 });
 
 export const fetchCategory = asyncHandler(async (req, res, next) => {
-  const categoryList = await Category.find();
+  const categoryList = await Category.find().sort({ _id: -1 });
 
   return res
     .status(200)

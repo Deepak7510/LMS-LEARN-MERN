@@ -1,12 +1,12 @@
-import {
-  createOrder,
-  createRazorpayOrder,
-} from "@/service/student-order-course";
 import { Button } from "../ui/button";
 import { useContext } from "react";
 import { AuthContext } from "@/context/auth-context";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import {
+  createOrderService,
+  createRazorpayOrderService,
+} from "@/service/student/student-order-course";
 
 function BuyCourseHandler({ courseDetails }) {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ function BuyCourseHandler({ courseDetails }) {
       amount: courseDetails.pricing,
       paymentMethod: "Razorpay",
     };
-    const razorpayOrderResult = await createRazorpayOrder({
+    const razorpayOrderResult = await createRazorpayOrderService({
       amount: courseDetails.pricing,
       course: courseDetails._id,
     });
@@ -37,7 +37,7 @@ function BuyCourseHandler({ courseDetails }) {
           formData.razorpayPaymentId = response.razorpay_payment_id;
           formData.razorpayOrderId = response.razorpay_order_id;
           formData.razorpaySignature = response.razorpay_signature;
-          const createOrderResult = await createOrder(formData);
+          const createOrderResult = await createOrderService(formData);
           console.log(createOrderResult);
           if (createOrderResult.success) {
             toast.success(createOrderResult.message);

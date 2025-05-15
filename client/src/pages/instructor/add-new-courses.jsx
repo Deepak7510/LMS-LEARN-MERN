@@ -4,8 +4,12 @@ import CourseSettings from "@/components/instructor-view/course-settings";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CourseContext } from "@/context/course-context";
-import { createCourse, fetchCourseById, updateCourse } from "@/service/course";
+import { CourseContext } from "@/context/instructor/course-context";
+import {
+  createCourseService,
+  fetchCourseByIdService,
+  updateCourseService,
+} from "@/service/instructor/course";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -87,9 +91,9 @@ function InstructorAddCoursePage() {
 
     let result;
     if (id !== null && location.pathname.includes("edit-course")) {
-      result = await updateCourse(formData, id);
+      result = await updateCourseService(formData, id);
     } else {
-      result = await createCourse(formData);
+      result = await createCourseService(formData);
     }
     if (result.success) {
       toast.success(result.message);
@@ -102,7 +106,7 @@ function InstructorAddCoursePage() {
   useEffect(() => {
     if (id !== null && location.pathname.includes("edit-course")) {
       async function fetchData() {
-        const result = await fetchCourseById(id);
+        const result = await fetchCourseByIdService(id);
         if (result.success) {
           form.reset(result.data);
         } else {

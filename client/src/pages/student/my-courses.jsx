@@ -1,7 +1,7 @@
 import MyCourseTile from "@/components/student-view/my-course-tile";
-import MyCourseTileSkeleton from "@/components/student-view/Skeleton/my-course-tile-skeleton";
+import MyCourseTileSkeleton from "@/components/student-view/skeleton/my-course-tile-skeleton";
 import { Skeleton } from "@/components/ui/skeleton";
-import { StudentCourseContext } from "@/context/student-course-context";
+import { StudentCourseContext } from "@/context/student/student-course-context";
 import { useContext, useEffect } from "react";
 
 function StudentMyCoursesPage() {

@@ -12,16 +12,16 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { deleteCategory } from "@/service/category";
+import { deleteCategoryService } from "@/service/instructor/category";
 import { toast } from "sonner";
 import { useContext } from "react";
-import { CategoryContext } from "@/context/category-context";
+import { CategoryContext } from "@/context/instructor/category-context";
 
 function HandleDeleteButton({ getCategoryId }) {
   const { fetchData } = useContext(CategoryContext);
 
   async function handleDelete(categoryId) {
-    const response = await deleteCategory(categoryId);
+    const response = await deleteCategoryService(categoryId);
     if (response.success) {
       toast.success(response.message);
       await fetchData();

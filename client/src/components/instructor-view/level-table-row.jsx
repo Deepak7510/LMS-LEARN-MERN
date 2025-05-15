@@ -14,14 +14,14 @@ import {
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
 import { useContext } from "react";
-import { LevelContext } from "@/context/level-context";
-import { deleteLevel } from "@/service/level";
+import { LevelContext } from "@/context/instructor/level-context";
+import { deleteLevelService } from "@/service/instructor/level";
 
 function HandleDeleteButton({ getLevelId }) {
   const { fetchData } = useContext(LevelContext);
 
   async function handleDelete(levelId) {
-    const response = await deleteLevel(levelId);
+    const response = await deleteLevelService(levelId);
     if (response.success) {
       toast.success(response.message);
       await fetchData();

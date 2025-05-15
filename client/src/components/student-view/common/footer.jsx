@@ -3,12 +3,49 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { instructorCreateNewsLetterService } from "@/service/student/news-letter";
+import { toast } from "sonner";
 
+const formSchema = z.object({
+  email: z
+    .string()
+    .nonempty("Email is required.")
+    .email("Invalid email provider"),
+});
 export default function StudentFooter() {
   const location = useLocation();
   const navigate = useNavigate();
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
+
+  async function onSubmit(formData) {
+    const result = await instructorCreateNewsLetterService(formData);
+    if (result.success) {
+      toast.success(result.message);
+      form.reset();
+    } else {
+      toast.error(result.message);
+      form.reset();
+    }
+  }
+
   return (
-    <footer className="bg-zinc-950 text-gray-300 py-6">
+    <footer className="bg-zinc-950 text-gray-300 py-6 border-t-2">
       <div className="px-20 grid md:grid-cols-4 sm:grid-cols-2 gap-20">
         {/* Branding */}
         <div>
@@ -71,16 +108,35 @@ export default function StudentFooter() {
           <p className="text-sm text-gray-400 mb-2">
             Get latest updates & free tips!
           </p>
-          <div className="flex items-center gap-2 mt-3">
-            <Input
-              type="email"
-              placeholder="Your email"
-              className="bg-gray-800 border-gray-700 text-white"
-            />
-            <Button className="bg-white text-black hover:bg-gray-200">
-              Subscribe
-            </Button>
-          </div>
+
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="flex items-start gap-2 mt-3"
+            >
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="Your email"
+                        className="bg-gray-800 border-gray-700 text-white"
+                        {...field}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button className="bg-white text-black hover:bg-gray-200">
+                Subscribe
+              </Button>
+            </form>
+          </Form>
         </div>
       </div>
 

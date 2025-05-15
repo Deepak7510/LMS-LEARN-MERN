@@ -19,7 +19,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { signinUser } from "@/service/auth";
+import { signinUserService } from "@/service/auth";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -41,7 +41,7 @@ function SignIn() {
   });
 
   async function onSubmit(data) {
-    const result = await signinUser(data);
+    const result = await signinUserService(data);
     if (result.success) {
       sessionStorage.setItem(
         "accessToken",

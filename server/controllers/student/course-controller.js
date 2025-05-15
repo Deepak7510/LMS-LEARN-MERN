@@ -3,10 +3,12 @@ import { ApiResponse } from "../../utils/api-response.js";
 import asyncHandler from "../../utils/async-handler.js";
 
 export const studentFetchAllCourse = asyncHandler(async (req, res, next) => {
-  const courseList = await Course.find().populate({
-    path: "instructor",
-    select: "username",
-  });
+  const courseList = await Course.find()
+    .populate({
+      path: "instructor",
+      select: "username",
+    })
+    .sort({ _id: -1 });
   return res
     .status(200)
     .json(new ApiResponse(200, "Category fetched successfully", courseList));

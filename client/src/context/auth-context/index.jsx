@@ -1,4 +1,4 @@
-import { checkAuth } from "@/service/auth";
+import { checkAuthService } from "@/service/auth";
 import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext(null);
@@ -13,7 +13,7 @@ function AuthContextProvider({ children }) {
 
   async function checkAuthUser() {
     setLoading(true);
-    const data = await checkAuth();
+    const data = await checkAuthService();
     if (data.success) {
       setAuthData({
         isAuthenticated: true,

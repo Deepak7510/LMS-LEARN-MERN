@@ -3,8 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Switch } from "../ui/switch";
-import { deleteMedia, UploadMedia } from "@/service/media";
-import VideoPlayer from "./common/video-player";
+import { deleteMediaService, uploadMediaService } from "@/service/media";
+import VideoPlayer from "../common/video-player";
 
 export const curriculum = [
   {
@@ -42,7 +42,7 @@ function CourseCorriculum({ form }) {
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append("file", file);
-    const result = await UploadMedia(formData);
+    const result = await uploadMediaService(formData);
     if (result.success) {
       let cpycurriculumFormData = [...curriculumFormData];
       cpycurriculumFormData[index] = {
@@ -57,7 +57,7 @@ function CourseCorriculum({ form }) {
   async function handleReplaceVideo(index) {
     let cpycurriculumFormData = [...curriculumFormData];
     const getCurrentVideoPublicId = cpycurriculumFormData[index].public_id;
-    const result = await deleteMedia(getCurrentVideoPublicId);
+    const result = await deleteMediaService(getCurrentVideoPublicId);
     if (result.success) {
       cpycurriculumFormData[index] = {
         ...cpycurriculumFormData[index],
@@ -71,7 +71,7 @@ function CourseCorriculum({ form }) {
   async function handleDeleteLecture(index) {
     let cpycurriculumFormData = [...curriculumFormData];
     const getCurrentVideoPublicId = cpycurriculumFormData[index].public_id;
-    const result = await deleteMedia(getCurrentVideoPublicId);
+    const result = await deleteMediaService(getCurrentVideoPublicId);
     if (result.success) {
       cpycurriculumFormData = cpycurriculumFormData.filter(
         (_, currentIndex) => {

@@ -1,9 +1,173 @@
-import { Card } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
+import { createMessageService } from "@/service/student/student-message";
+import { toast } from "sonner";
+
+const formSchema = z.object({
+  name: z.string().nonempty("Name is required."),
+  email: z
+    .string()
+    .nonempty("Email is required.")
+    .email("Invalid email format."),
+  message: z
+    .string()
+    .nonempty("Message is required.")
+    .max(250, "Message must be less then 250 character."),
+});
 
 function StudentContactPage() {
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  });
+
+  async function onSubmit(formData) {
+    const result = await createMessageService(formData);
+    console.log(result);
+    if (result.success) {
+      toast.success(result.message);
+      form.reset();
+    } else {
+      toast.error(result.message);
+    }
+  }
+
   return (
-    <div className="py-20 sm:px-6 lg:px-10 xl:px-28">
-      <Card></Card>
+    <div className="py-20 sm:px-6 lg:px-10 xl:px-28 space-y-4">
+      <div className="text-lg text-center">
+        If you have any questions regarding <strong>Sales</strong>,{" "}
+        <strong>Billing</strong>, or <strong>Technical Support</strong>, please
+        don't hesitate to get in touch with us.
+      </div>
+      <Card
+        className={
+          "bg-gray-50 dark:bg-gray-900/20 border-gray-200 dark:border-gray-800"
+        }
+      >
+        <CardContent className={"grid grid-cols-1 md:grid-cols-2"}>
+          <div className="p-10 border-r-1">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-8"
+              >
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter the name" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter the email" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Message</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Write a message"
+                          className="resize-none"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button disabled={form.formState.isSubmitting} type="submit">
+                  Submit
+                </Button>
+              </form>
+            </Form>
+          </div>
+          <div className="border-l-1 p-10">
+            <h1 className="text-2xl font-bold mb-2">Contact Us</h1>
+            <div className="space-y-1">
+              <p>Email: deepakkumaryadav75100@gmail.com</p>
+              <p> Phone: +91 7510064500 </p>
+              <p>Address: Balrampur, India</p>
+            </div>
+            <div className="flex gap-4 mt-3">
+              <Button className={"cursor-pointer rounded-full"}>
+                <Facebook className="h-6 w-6" />
+              </Button>
+              <Button className={"cursor-pointer rounded-full"}>
+                <Instagram className="h-6 w-6" />
+              </Button>
+              <Button className={"cursor-pointer rounded-full"}>
+                <Linkedin className="h-6 w-6" />
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card
+        className={
+          "bg-blue-50 border-gray-200 dark:bg-gray-900/20 dark:border-gray-800"
+        }
+      >
+        <CardContent>
+          <CardHeader>
+            <CardTitle className={"text-3xl"}>FAQ</CardTitle>
+          </CardHeader>
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </CardContent>
+      </Card>
     </div>
   );
 }

@@ -4,8 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useNavigate } from "react-router-dom";
 import CourseCardTile from "@/components/student-view/course-card-tile";
-import CourseCardTileSkeleton from "@/components/student-view/Skeleton/course-card-tile-skeleton";
+import CourseCardTileSkeleton from "@/components/student-view/skeleton/course-card-tile-skeleton";
 import { useTheme } from "@/components/theme/theme-provider";
+import { Card, CardContent } from "@/components/ui/card";
 
 function StudentHomePage() {
   const navigate = useNavigate();
@@ -57,19 +58,15 @@ function StudentHomePage() {
             : categoryList && categoryList.length > 0
             ? categoryList.map((item) => {
                 return (
-                  <Button
+                  <Card
                     key={item._id}
-                    className={`${
-                      theme === "dark"
-                        ? "bg-white"
-                        : theme === "light"
-                        ? "bg-zinc-700"
-                        : ""
-                    } cursor-pointer`}
+                    className={`py-1.5 shadow-sm rounded-sm bg-gray-50 border-gray-200 dark:border-gray-800 dark:bg-gray-900/20 cursor-pointer`}
                     onClick={() => handleCategoryRedirect(item._id)}
                   >
-                    {item.name}
-                  </Button>
+                    <CardContent className={`px-1.5 text-center font-medium`}>
+                      {item.name}
+                    </CardContent>
+                  </Card>
                 );
               })
             : null}

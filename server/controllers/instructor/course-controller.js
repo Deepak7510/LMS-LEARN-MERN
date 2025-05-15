@@ -14,7 +14,7 @@ export const createCourse = asyncHandler(async (req, res, next) => {
 });
 
 export const fetchCourse = asyncHandler(async (req, res, next) => {
-  const courseList = await Course.find();
+  const courseList = await Course.find().sort({ _id: -1 });
   return res
     .status(201)
     .json(new ApiResponse(201, "All course fetched successfully", courseList));

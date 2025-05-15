@@ -30,10 +30,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { z } from "zod";
-import { createCategory, updateCategory } from "@/service/category";
+import {
+  createCategoryService,
+  updateCategoryService,
+} from "@/service/instructor/category";
 import { toast } from "sonner";
-import { CategoryContext } from "@/context/category-context";
-import TableRowSheletonOne from "@/components/instructor-view/common/table-row-skeleton-1";
+import { CategoryContext } from "@/context/instructor/category-context";
+import TableRowSheletonOne from "@/components/instructor-view/skeleton/table-row-skeleton-1";
 import CategoryListTableRow from "@/components/instructor-view/category-table-row";
 
 const formSchema = z.object({
@@ -60,9 +63,9 @@ function InstructorCourseCategoryPage() {
   async function onSubmit(formData) {
     let response;
     if (editId === null) {
-      response = await createCategory(formData);
+      response = await createCategoryService(formData);
     } else {
-      response = await updateCategory(formData, editId);
+      response = await updateCategoryService(formData, editId);
     }
     if (response.success) {
       await fetchData();

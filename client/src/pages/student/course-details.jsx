@@ -1,6 +1,5 @@
-import VideoPlayer from "@/components/instructor-view/common/video-player";
+import VideoPlayer from "@/components/common/video-player";
 import BuyCourseHandler from "@/components/student-view/buy-course-handler";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Dialog,
@@ -9,8 +8,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-import { StudentCourseContext } from "@/context/student-course-context";
-import { checkCurseBuyStatus } from "@/service/student-order-course";
+import { StudentCourseContext } from "@/context/student/student-course-context";
+import { checkCurseBuyStatusService } from "@/service/student/student-order-course";
 import {
   BadgeCheck,
   Calendar,
@@ -44,7 +43,7 @@ function StudentCourseDetailsPage() {
   }, [courseId]);
 
   useEffect(() => {
-    checkCurseBuyStatus(courseId).then((result) => {
+    checkCurseBuyStatusService(courseId).then((result) => {
       if (result.success) {
         if (result.data.status) {
           return navigate(`/course-progress/${courseId}`);

@@ -74,7 +74,7 @@ export const updateLevel = asyncHandler(async (req, res, next) => {
 });
 
 export const fetchLevel = asyncHandler(async (req, res, next) => {
-  const levelList = await Level.find();
+  const levelList = await Level.find().sort({ _id: -1 });
   return res
     .status(200)
     .json(new ApiResponse(200, "Level fetched successfully", levelList));

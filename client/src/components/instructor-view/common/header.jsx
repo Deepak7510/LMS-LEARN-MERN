@@ -1,7 +1,7 @@
 import { AlignJustify, LogOut } from "lucide-react";
 import { Button } from "../../ui/button";
 import { useSidebar } from "../../ui/sidebar";
-import HandleLogout from "./handle-logout";
+import HandleLogout from "../../common/handle-logout";
 import { ModeToggle } from "@/components/theme/mode-toggle";
 import { useTheme } from "@/components/theme/theme-provider";
 

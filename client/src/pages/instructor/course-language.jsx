@@ -31,9 +31,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { z } from "zod";
 import { toast } from "sonner";
-import { LanguageContext } from "@/context/language-context";
-import { createLanguage, updateLanguage } from "@/service/language";
-import TableRowSheletonOne from "@/components/instructor-view/common/table-row-skeleton-1";
+import { LanguageContext } from "@/context/instructor/language-context";
+import {
+  createLanguageService,
+  updateLanguageService,
+} from "@/service/instructor/language";
+import TableRowSheletonOne from "@/components/instructor-view/skeleton/table-row-skeleton-1";
 import LanguageListTableRow from "@/components/instructor-view/language-table-row";
 
 const formSchema = z.object({
@@ -60,9 +63,9 @@ function InstructorCourseLanguagePage() {
   async function onSubmit(formData) {
     let response;
     if (editId === null) {
-      response = await createLanguage(formData);
+      response = await createLanguageService(formData);
     } else {
-      response = await updateLanguage(formData, editId);
+      response = await updateLanguageService(formData, editId);
     }
     if (response.success) {
       await fetchData();

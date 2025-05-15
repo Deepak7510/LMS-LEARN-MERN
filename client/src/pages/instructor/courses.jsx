@@ -1,4 +1,4 @@
-import TableRowSheletonOne from "@/components/instructor-view/common/table-row-skeleton-1";
+import TableRowSheletonOne from "@/components/instructor-view/skeleton/table-row-skeleton-1";
 import CourseListTableRow from "@/components/instructor-view/course-table-row";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CourseContext } from "@/context/course-context";
+import { CourseContext } from "@/context/instructor/course-context";
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
