@@ -21,6 +21,7 @@ import StudentCourseProgressPage from "./pages/student/course-progress";
 import StudentAboutUsPage from "./pages/student/aboutus";
 import StudentContactPage from "./pages/student/contact";
 import InstructorMessagePage from "./pages/instructor/message";
+import InstructorNewsLetterPage from "./pages/instructor/news-letter";
 
 function App() {
   const {
@@ -101,6 +102,7 @@ function App() {
         <Route path="add-new-course" element={<InstructorAddCoursePage />} />
         <Route path="edit-course/:id" element={<InstructorAddCoursePage />} />
         <Route index path="message" element={<InstructorMessagePage />} />
+        <Route index path="newsletter" element={<InstructorNewsLetterPage />} />
       </Route>
 
       <Route path="*" element={<NotFoundPage />} />

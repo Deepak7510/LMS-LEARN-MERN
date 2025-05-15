@@ -14,6 +14,7 @@ import {
   BookOpen,
   Languages,
   LayoutDashboard,
+  MailIcon,
   MessageCircle,
   NotebookText,
 } from "lucide-react";
@@ -47,6 +48,11 @@ const items = [
     title: "Message",
     url: "/instructor/message",
     icon: <MessageCircle />,
+  },
+  {
+    title: "Newsletter email",
+    url: "/instructor/newsletter",
+    icon: <MailIcon />,
   },
 ];
 function InstructorSidebar() {
