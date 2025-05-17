@@ -38,7 +38,7 @@ function InstructorMessagePage() {
   }
 
   return (
-    <Card>
+    <Card className={"shadow-none"}>
       <CardHeader>
         <CardTitle className={"text-xl font-bold"}>All Message</CardTitle>
       </CardHeader>
@@ -70,7 +70,11 @@ function InstructorMessagePage() {
           </TableHeader>
           <TableBody>
             {loading && messageList.length == 0 ? (
-              <TableRowSheletonOne />
+              Array(10)
+                .fill(null)
+                .map((_, index) => {
+                  return <TableRowSheletonOne key={index} />;
+                })
             ) : messageList && messageList.length > 0 ? (
               messageList.map((item) => {
                 return (

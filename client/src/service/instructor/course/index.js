@@ -47,3 +47,15 @@ export async function updateCourseService(formData, id) {
     return error.response.data;
   }
 }
+
+export async function deleteCourseService(id) {
+  try {
+    const response = await axiosInstance.delete(
+      `/api/instructor/course/delete/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return error.response.data;
+  }
+}

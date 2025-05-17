@@ -26,14 +26,14 @@ function StudentHomePage() {
     return navigate("/courses");
   }
 
-  const { theme } = useTheme();
-
   return (
     <div className="min-h-screen space-y-5 md:space-y-10 py-18 px-4 sm:px-6 lg:px-10 xl:px-28">
       <section className="flex flex-col md:flex-row justify-center items-center">
-        <div className="h-full w-full md:w-1/2 items-center space-y-1 p-4">
-          <h1 className="text-4xl font-extrabold">Learning that gets you</h1>
-          <p className="text-lg">
+        <div className="h-full w-full md:w-1/2 items-center space-y-1 p-2 md:p-4">
+          <h1 className="text-2xl md:text-4xl font-extrabold">
+            Learning that gets you
+          </h1>
+          <p className="text-base md:text-lg">
             Skill for your present and your future. Get Started with us
           </p>
         </div>
@@ -47,45 +47,52 @@ function StudentHomePage() {
       </section>
 
       <section className="w-full">
-        <h1 className="text-2xl mb-5 font-extrabold">Course Categories</h1>
+        <h1 className="text-lg md:text-2xl mb-5 font-extrabold">
+          Course Categories
+        </h1>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
-          {categoryListLoading
-            ? Array(8)
-                .fill(null)
-                .map((_, index) => {
-                  return <Skeleton key={index} className={"w-full h-10"} />;
-                })
-            : categoryList && categoryList.length > 0
-            ? categoryList.map((item) => {
-                return (
-                  <Card
-                    key={item._id}
-                    className={`py-1.5 shadow-sm rounded-sm bg-gray-50 border-gray-200 dark:border-gray-800 dark:bg-gray-900/20 cursor-pointer`}
-                    onClick={() => handleCategoryRedirect(item._id)}
-                  >
-                    <CardContent className={`px-1.5 text-center font-medium`}>
-                      {item.name}
-                    </CardContent>
-                  </Card>
-                );
+          {categoryListLoading ? (
+            Array(8)
+              .fill(null)
+              .map((_, index) => {
+                return <Skeleton key={index} className={"w-full h-10"} />;
               })
-            : null}
+          ) : categoryList && categoryList.length > 0 ? (
+            categoryList.map((item) => {
+              return (
+                <Button
+                  variant={"outline"}
+                  key={item._id}
+                  onClick={() => handleCategoryRedirect(item._id)}
+                  className={`text-xs px-0.5 md:text-sm py-1.5 shadow-sm line-clamp-1 rounded-sm bg-gray-50 border-gray-200 dark:border-gray-800 dark:bg-gray-900/20 cursor-pointer`}
+                >
+                  {item.name}
+                </Button>
+              );
+            })
+          ) : (
+            <div className="text-lg font-semibold">No categories found</div>
+          )}
         </div>
       </section>
       <section className="w-full">
-        <h1 className="text-2xl mb-5 font-extrabold">Featured Courses</h1>
+        <h1 className="text-lg md:text-2xl mb-5 font-extrabold">
+          Featured Courses
+        </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-          {courseListLoading
-            ? Array(6)
-                .fill(null)
-                .map((_, index) => {
-                  return <CourseCardTileSkeleton key={index} />;
-                })
-            : courseList && courseList.length > 0
-            ? courseList.map((item) => {
-                return <CourseCardTile key={item._id} courseDetails={item} />;
+          {courseListLoading ? (
+            Array(6)
+              .fill(null)
+              .map((_, index) => {
+                return <CourseCardTileSkeleton key={index} />;
               })
-            : null}
+          ) : courseList && courseList.length > 0 ? (
+            courseList.map((item) => {
+              return <CourseCardTile key={item._id} courseDetails={item} />;
+            })
+          ) : (
+            <div className="text-lg font-semibold">No courses found</div>
+          )}
         </div>
       </section>
     </div>

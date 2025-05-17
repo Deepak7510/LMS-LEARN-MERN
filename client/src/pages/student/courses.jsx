@@ -92,7 +92,7 @@ function StudentCoursePage() {
                 return <CourseCardTile courseDetails={item} key={item._id} />;
               })
             ) : (
-              <div>No Course</div>
+              <div className="text-lg font-semibold">No courses found</div>
             )}
           </div>
         </div>

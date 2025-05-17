@@ -12,3 +12,13 @@ export const InstructorFetchNewsLetterList = asyncHandler(
       );
   }
 );
+
+export const InstructorDeleteNewsLetter = asyncHandler(
+  async (req, res, next) => {
+    const { newsLetterId } = req.params;
+    await Newsletter.findByIdAndDelete(newsLetterId);
+    res
+      .status(200)
+      .json(new ApiResponse(200, "Newsletter Deleted successfully."));
+  }
+);

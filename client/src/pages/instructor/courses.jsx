@@ -41,7 +41,11 @@ function InstructorCoursePage() {
             </TableHeader>
             <TableBody>
               {loading && courseList.length == 0 ? (
-                <TableRowSheletonOne />
+                Array(10)
+                  .fill(null)
+                  .map((_, index) => {
+                    return <TableRowSheletonOne key={index} />;
+                  })
               ) : courseList && courseList.length > 0 ? (
                 courseList.map((item) => {
                   return (

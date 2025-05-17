@@ -1,3 +1,4 @@
+import HashLoaderProvider from "@/components/common/HashLoader";
 import VideoPlayer from "@/components/common/video-player";
 import BuyCourseHandler from "@/components/student-view/buy-course-handler";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -67,26 +68,26 @@ function StudentCourseDetailsPage() {
   return (
     <div>
       {courseDetailsLoading ? (
-        <div>Loading</div>
+        <HashLoaderProvider />
       ) : courseDetails == null ? (
         <div className="flex justify-center h-screen items-center">
           <div className="text-2xl font-extrabold">Course Details found !</div>
         </div>
       ) : (
         <div>
-          <div className="bg-zinc-950 px-40 py-20 space-y-5">
+          <div className="bg-zinc-950 px-6 md:px-40 py-18 md:py-20 space-y-3 md:space-y-5">
             <div className="font-semibold text-purple-300">
               <span> {courseDetails?.category.name}</span>
               <span>{">"}</span>
               <span>{courseDetails?.level.name}</span>
             </div>
-            <h1 className="text-white text-4xl font-semibold">
+            <h1 className="text-white text-2xl md:text-4xl font-semibold">
               {courseDetails?.title}
             </h1>
-            <h2 className="text-white text-xl font-medium">
+            <h2 className="text-white textt-lg md:text-xl font-medium">
               {courseDetails?.subTitle}
             </h2>
-            <p className="text-white">
+            <p className="text-white text-xs md:text-base">
               Created by{" "}
               <span className="text-purple-400">
                 {courseDetails?.instructor.username}
@@ -95,25 +96,33 @@ function StudentCourseDetailsPage() {
 
             <div className="text-white flex gap-3">
               <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4" />
-                <span>
+                <Calendar className="h-3 w-3 md:h-5 md:w-5" />
+                <span className="text-xs md:text-base">
                   Last Update :{" "}
                   {new Date(courseDetails?.createdAt).toLocaleDateString()}
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <Globe className="h-5 w-5" />
-                <span>{courseDetails?.primaryLanguage?.name}</span>
+                <Globe className="h-3 w-3 md:h-5 md:w-5" />
+                <span className="text-xs md:text-base">
+                  {courseDetails?.primaryLanguage?.name}
+                </span>
               </div>
               <div className="flex items-center gap-2">
-                <UserRoundPen className="h-5 w-5" />
-                <span>{courseDetails?.students?.length}</span>
+                <UserRoundPen className="h-3 w-3 md:h-5 md:w-5" />
+                <span className="text-xs md:text-base">
+                  {courseDetails?.students?.length}
+                </span>
               </div>
             </div>
           </div>
-          <div className="flex gap-4 px-40 py-10 space-y-5">
-            <main className="w-1/2 space-y-5">
-              <Card className={"gap-1 shadow-none"}>
+          <div className="flex flex-col md:flex-row gap-4 px-2 md:px-40 py-6 md:py-10 space-y-2 md:space-y-5">
+            <main className="w-full md:w-1/2 space-y-3 md:space-y-5">
+              <Card
+                className={
+                  "gap-1 shadow-sm border-amber-200 bg-amber-50 dark:bg-amber-900/20 dark:border-amber-800"
+                }
+              >
                 <CardHeader>
                   <CardTitle className={"text-lg font-medium"}>
                     What you will learn ?
@@ -136,7 +145,11 @@ function StudentCourseDetailsPage() {
                   </ul>
                 </CardContent>
               </Card>
-              <Card className={"gap-1 shadow-none"}>
+              <Card
+                className={
+                  "gap-1  bg-gray-50 border-purple-200 dark:border-purple-800 dark:bg-purple-900/20"
+                }
+              >
                 <CardHeader>
                   <CardTitle className={"text-lg font-medium"}>
                     Course Curriculum
@@ -175,7 +188,11 @@ function StudentCourseDetailsPage() {
                   </ul>
                 </CardContent>
               </Card>
-              <Card className={"shadow-none gap-1"}>
+              <Card
+                className={
+                  " gap-1 bg-blue-50 border-blue-200 dark:border-blue-800 dark:bg-blue-900/20"
+                }
+              >
                 <CardHeader>
                   <CardTitle className={"text-lg font-medium"}>
                     Course Description
@@ -190,8 +207,12 @@ function StudentCourseDetailsPage() {
                 </CardContent>
               </Card>
             </main>
-            <aside className="w-1/2">
-              <Card className={"gap-3 shadow-none"}>
+            <aside className="w-full md:w-1/2">
+              <Card
+                className={
+                  "gap-3  py-2 bg-gray-50 border-gray-200 dark:border-gray-800 dark:bg-gray-900/20"
+                }
+              >
                 <CardHeader>
                   <CardTitle className={"text-lg font-medium"}>
                     Lecture 1:{" "}
@@ -201,7 +222,7 @@ function StudentCourseDetailsPage() {
                   </CardTitle>
                   <Separator />
                 </CardHeader>
-                <CardContent>
+                <CardContent className={"px-3"}>
                   <VideoPlayer
                     height="300px"
                     width="100%"
@@ -228,10 +249,7 @@ function StudentCourseDetailsPage() {
               setCoursePreviewData(null);
             }}
           >
-            <DialogContent
-              className="min-w-[600px]"
-              aria-describedby={undefined}
-            >
+            <DialogContent aria-describedby={undefined}>
               <DialogHeader>
                 <DialogTitle className={"font-extrabold"}>
                   Courese preview

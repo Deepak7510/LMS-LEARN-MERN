@@ -1,3 +1,4 @@
+import { destroyMediaToCloudinary } from "../../config/cloudinary.js";
 import Course from "../../models/Course.js";
 import { ApiError } from "../../utils/api-error.js";
 import { ApiResponse } from "../../utils/api-response.js";
@@ -37,6 +38,10 @@ export const deleteCourse = asyncHandler(async (req, res, next) => {
     return next(new ApiError(404, "Course id is required."));
   }
   const course = await Course.findByIdAndDelete(courseId);
+  for (let curriculumItem of course.curriculum) {
+    await destroyMediaToCloudinary(curriculumItem.public_id);
+  }
+
   return res
     .status(201)
     .json(new ApiResponse(201, "Course fetch successfully", course));

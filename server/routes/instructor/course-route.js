@@ -3,6 +3,7 @@ import isAuthenticated from "../../middleware/isAuthenticated.js";
 import { checkInstructorOrNot } from "../../helper/checkInstructorOrNot.js";
 import {
   createCourse,
+  deleteCourse,
   fetchCourse,
   fetchCourseById,
   updateCourse,
@@ -18,6 +19,12 @@ route.put(
   isAuthenticated,
   checkInstructorOrNot,
   updateCourse
+);
+route.delete(
+  "/delete/:courseId",
+  isAuthenticated,
+  checkInstructorOrNot,
+  deleteCourse
 );
 
 export default route;

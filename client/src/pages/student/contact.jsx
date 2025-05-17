@@ -25,6 +25,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
 import { createMessageService } from "@/service/student/student-message";
 import { toast } from "sonner";
+import { Separator } from "@/components/ui/separator";
 
 const formSchema = z.object({
   name: z.string().nonempty("Name is required."),
@@ -68,15 +69,15 @@ function StudentContactPage() {
       </div>
       <Card
         className={
-          "bg-gray-50 dark:bg-gray-900/20 border-gray-200 dark:border-gray-800"
+          "bg-gray-50 dark:bg-gray-900/20 border-gray-200 dark:border-gray-800 m-2"
         }
       >
         <CardContent className={"grid grid-cols-1 md:grid-cols-2"}>
-          <div className="p-10 border-r-1">
+          <div className="p-2 md:p-10 md:border-r-1">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8"
+                className="space-y-6 md:space-y-8"
               >
                 <FormField
                   control={form.control}
@@ -127,7 +128,8 @@ function StudentContactPage() {
               </form>
             </Form>
           </div>
-          <div className="border-l-1 p-10">
+          <Separator className={"md:hidden my-6"} />
+          <div className="md:border-l-1 p-2 md:p-10">
             <h1 className="text-2xl font-bold mb-2">Contact Us</h1>
             <div className="space-y-1">
               <p>Email: deepakkumaryadav75100@gmail.com</p>
@@ -146,26 +148,6 @@ function StudentContactPage() {
               </Button>
             </div>
           </div>
-        </CardContent>
-      </Card>
-
-      <Card
-        className={
-          "bg-blue-50 border-gray-200 dark:bg-gray-900/20 dark:border-gray-800"
-        }
-      >
-        <CardContent>
-          <CardHeader>
-            <CardTitle className={"text-3xl"}>FAQ</CardTitle>
-          </CardHeader>
-          <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
-              <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
         </CardContent>
       </Card>
     </div>

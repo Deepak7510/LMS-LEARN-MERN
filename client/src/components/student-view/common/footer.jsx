@@ -46,7 +46,7 @@ export default function StudentFooter() {
 
   return (
     <footer className="bg-zinc-950 text-gray-300 py-6 border-t-2">
-      <div className="px-20 grid md:grid-cols-4 sm:grid-cols-2 gap-20">
+      <div className="px-6 md:px-20 grid md:grid-cols-4 sm:grid-cols-2 gap-6 md:gap-20">
         {/* Branding */}
         <div>
           <h2 className="text-2xl font-bold text-white">LMS LEARN</h2>
@@ -171,14 +171,6 @@ export default function StudentFooter() {
           >
             <Youtube className="w-5 h-5 text-white" />
           </Button>
-        </div>
-        <div className="text-sm text-gray-400 flex justify-center gap-6">
-          <a href="#" className="hover:text-white">
-            Privacy Policy
-          </a>
-          <a href="#" className="hover:text-white">
-            Terms & Conditions
-          </a>
         </div>
       </div>
 

@@ -19,6 +19,7 @@ import { Check, Play } from "lucide-react";
 import { toast } from "sonner";
 import { StudentCourseContext } from "@/context/student/student-course-context";
 import VideoPlayer from "@/components/common/video-player";
+import HashLoaderProvider from "@/components/common/HashLoader";
 
 function StudentCourseProgressPage() {
   const {
@@ -118,7 +119,7 @@ function StudentCourseProgressPage() {
   return (
     <div className="w-full">
       {courseProgressLoading ? (
-        <div>Loading</div>
+        <HashLoaderProvider />
       ) : (
         <div>
           <Dialog open={!lockCourse}>

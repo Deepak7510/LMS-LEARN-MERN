@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { TableCell, TableRow } from "@/components/ui/table";
-import { Edit, Trash } from "lucide-react";
+import { Edit, Trash, ViewIcon } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,16 +13,11 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { CourseContext } from "@/context/instructor/course-context";
-import { deleteCourseService } from "@/service/instructor/course";
+import { instructorDeleteNewsLetterService } from "@/service/instructor/news-letter";
 
-function HandleDeleteButton({ getCourseId }) {
-  const { fetchData } = useContext(CourseContext);
-
-  async function handleDelete(courseId) {
-    const response = await deleteCourseService(courseId);
+function HandleDeleteButton({ getNewsLetterId, fetchData }) {
+  async function handleDelete(newsLetterId) {
+    const response = await instructorDeleteNewsLetterService(newsLetterId);
     if (response.success) {
       toast.success(response.message);
       await fetchData();
@@ -48,7 +43,7 @@ function HandleDeleteButton({ getCourseId }) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={() => handleDelete(getCourseId)}>
+          <AlertDialogAction onClick={() => handleDelete(getNewsLetterId)}>
             Continue
           </AlertDialogAction>
         </AlertDialogFooter>
@@ -57,27 +52,18 @@ function HandleDeleteButton({ getCourseId }) {
   );
 }
 
-function CourseListTableRow({ courseDetails }) {
-  const navigate = useNavigate();
+function InstructorNewsLetterTableRow({ newLetterDetails, fetchData }) {
   return (
     <TableRow>
-      <TableCell className="font-medium">{courseDetails?.title}</TableCell>
-      <TableCell>{courseDetails?.students?.length}</TableCell>
-      <TableCell>₹ {courseDetails.pricing}</TableCell>
+      <TableCell>{newLetterDetails.email}</TableCell>
       <TableCell>
-        <Button
-          onClick={() =>
-            navigate(`/instructor/edit-course/${courseDetails._id}`)
-          }
-          size="sm"
-          variant="ghost"
-        >
-          <Edit className="h-6 w-6" />
-        </Button>
-        <HandleDeleteButton getCourseId={courseDetails._id} />
+        <HandleDeleteButton
+          getNewsLetterId={newLetterDetails._id}
+          fetchData={fetchData}
+        />
       </TableCell>
     </TableRow>
   );
 }
 
-export default CourseListTableRow;
+export default InstructorNewsLetterTableRow;

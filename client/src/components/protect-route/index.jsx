@@ -1,10 +1,12 @@
 import { Navigate, useLocation } from "react-router-dom";
+import { HashLoader } from "react-spinners";
+import HashLoaderProvider from "../common/HashLoader";
 
 function ProtectRoute({ isAuthenticated, user, loading, children }) {
   const location = useLocation();
 
   if (loading) {
-    return <div>Loading.....</div>;
+    return <HashLoaderProvider />;
   }
 
   if (!isAuthenticated && !location.pathname.includes("/auth")) {
