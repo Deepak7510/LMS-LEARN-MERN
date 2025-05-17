@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useNavigate } from "react-router-dom";
 import CourseCardTile from "@/components/student-view/course-card-tile";
-// import CourseCardTileSkeleton from "../../components/student-view/skeleton/course-card-tile-skeleton";
+import CourseCardTileSkeleton from "@/components/student-view/skeleton/course-card-tile-skeleton";
 
 function StudentHomePage() {
   const navigate = useNavigate();
@@ -82,7 +82,7 @@ function StudentHomePage() {
             Array(6)
               .fill(null)
               .map((_, index) => {
-                return <div>123</div>;
+                return <CourseCardTileSkeleton key={index} />;
               })
           ) : courseList && courseList.length > 0 ? (
             courseList.map((item) => {
