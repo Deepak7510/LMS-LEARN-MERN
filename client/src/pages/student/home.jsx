@@ -5,8 +5,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useNavigate } from "react-router-dom";
 import CourseCardTile from "@/components/student-view/course-card-tile";
 import CourseCardTileSkeleton from "@/components/student-view/skeleton/course-card-tile-skeleton";
-import { useTheme } from "@/components/theme/theme-provider";
-import { Card, CardContent } from "@/components/ui/card";
 
 function StudentHomePage() {
   const navigate = useNavigate();
