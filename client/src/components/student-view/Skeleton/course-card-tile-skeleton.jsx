@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function CourseCardTileSkeleton() {
+export default function CourseCardTileSkeletonDemo() {
   return (
     <Card className="py-2.5 shadow-none">
       <CardContent className="px-2.5 space-y-2">

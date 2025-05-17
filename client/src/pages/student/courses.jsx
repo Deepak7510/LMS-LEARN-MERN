@@ -1,7 +1,7 @@
 import CourseCardTile from "@/components/student-view/course-card-tile";
 import FilterCourseHeader from "@/components/student-view/filter-course-header";
 import FilterCoursesSidebar from "@/components/student-view/filter-course-sidebar";
-import CourseCardTileSkeleton from "../../components/student-view/skeleton/CourseCardTileSkeleton.jsx";
+import CourseCardTileSkeletonDemo from "@/components/student-view/skeleton/course-card-tile-skeleton";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { StudentCourseContext } from "@/context/student/student-course-context";
 import { useContext, useEffect, useState } from "react";
@@ -86,7 +86,7 @@ function StudentCoursePage() {
             {loading ? (
               Array(9)
                 .fill(null)
-                .map((_, index) => <CourseCardTileSkeleton key={index} />)
+                .map((_, index) => <CourseCardTileSkeletonDemo key={index} />)
             ) : courseFilterList && courseFilterList.length > 0 ? (
               courseFilterList.map((item) => {
                 return <CourseCardTile courseDetails={item} key={item._id} />;
