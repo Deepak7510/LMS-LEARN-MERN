@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useNavigate } from "react-router-dom";
 import CourseCardTile from "@/components/student-view/course-card-tile";
-import CourseCardTileSkeleton from "../../../src/components/student-view/skeleton/course-card-tile-skeleton";
+import CourseCardTileSkeleton from "../../components/student-view/skeleton/CourseCardTileSkeleton.jsx";
 
 function StudentHomePage() {
   const navigate = useNavigate();

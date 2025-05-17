@@ -1,7 +1,7 @@
 import CourseCardTile from "@/components/student-view/course-card-tile";
 import FilterCourseHeader from "@/components/student-view/filter-course-header";
 import FilterCoursesSidebar from "@/components/student-view/filter-course-sidebar";
-import CourseCardTileSkeleton from "../../../src/components/student-view/skeleton/course-card-tile-skeleton";
+import CourseCardTileSkeleton from "../../components/student-view/skeleton/CourseCardTileSkeleton.jsx";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { StudentCourseContext } from "@/context/student/student-course-context";
 import { useContext, useEffect, useState } from "react";
