@@ -16,11 +16,17 @@ function InstructorDashboardPage() {
     "/api/instructor/dashboard/fetch"
   );
 
-  console.log(data);
+  const totalAmount =
+    data && data.totatEnrolledStudentList.length > 0
+      ? data.totatEnrolledStudentList.reduce((pre, curr) => {
+          return pre + curr.amount;
+        }, 0)
+      : 0;
 
+  console.log(totalAmount);
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {loading ? (
           Array(8)
             .fill(null)
@@ -74,6 +80,12 @@ function InstructorDashboardPage() {
               <CardContent className={"text-center"}>
                 <div className="text-lg font-medium">Total Courses</div>
                 <div className="text-xl font-semibold">{data.totalCourses}</div>
+              </CardContent>
+            </Card>
+            <Card className={"shadow-none"}>
+              <CardContent className={"text-center"}>
+                <div className="text-lg font-medium">Total Revenu</div>
+                <div className="text-xl font-semibold">₹ {totalAmount}</div>
               </CardContent>
             </Card>
             <Card className={"shadow-none"}>
