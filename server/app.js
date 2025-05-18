@@ -29,6 +29,7 @@ import InstructorLanguageRouter from "./routes/instructor/language-route.js";
 import InstructorCourseRouter from "./routes/instructor/course-route.js";
 import InstructorMessageRouter from "./routes/instructor/message-route.js";
 import InstructorNewsLetterRouter from "./routes/instructor/news-letter-route.js";
+import InstructorDashboardRouter from "./routes/instructor/dashboard-route.js";
 
 import StudentCategoryRouter from "./routes/student/category-route.js";
 import StudentLevelRouter from "./routes/student/level-route.js";
@@ -43,6 +44,7 @@ app.use("/api/auth", AuthRouter);
 app.use("/api/media", MediaRouter);
 
 // instructor -------------------------
+app.use("/api/instructor/dashboard", InstructorDashboardRouter);
 app.use("/api/instructor/category", InstructorCategoryRouter);
 app.use("/api/instructor/level", InstructorLevelRouter);
 app.use("/api/instructor/language", InstructorLanguageRouter);

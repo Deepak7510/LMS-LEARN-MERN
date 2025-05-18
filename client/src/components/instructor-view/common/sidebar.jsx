@@ -60,8 +60,8 @@ function InstructorSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className={"text-2xl mb-4 font-extrabold"}>
-            Dashboard
+          <SidebarGroupLabel asChild className={"text-2xl mb-4 font-extrabold"}>
+            <Link to={"/instructor/dashboard"}>Dashboard</Link>
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className={"space-y-2"}>
