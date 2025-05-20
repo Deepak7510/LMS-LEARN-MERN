@@ -13,9 +13,9 @@ export const fetchMessageList = asyncHandler(async (req, res, next) => {
 export const deleteMessage = asyncHandler(async (req, res, next) => {
   const { messageId } = req.params;
   if (!messageId) {
-    return next(new ApiError(401, "Message id is required."));
+    return next(new ApiError(400, "Message id is required."));
   }
-  const deletedMessage = await Message.findByIdAndDelete(messageId);
+  await Message.findByIdAndDelete(messageId);
 
   res.status(200).json(new ApiResponse(200, "Message deleted successfully."));
 });

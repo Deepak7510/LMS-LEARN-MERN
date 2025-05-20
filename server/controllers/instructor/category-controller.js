@@ -17,7 +17,7 @@ export const createCategory = asyncHandler(async (req, res, next) => {
 
   const checkCategory = await Category.findOne({ slug });
   if (checkCategory) {
-    return next(new ApiError(403, "Category is already exits."));
+    return next(new ApiError(403, "Category is already exists."));
   }
 
   const newCategory = new Category({ name, slug, status });
@@ -46,7 +46,7 @@ export const updateCategory = asyncHandler(async (req, res, next) => {
   const { name, status } = req.body;
 
   if (!categoryId || !name) {
-    return next(new ApiError(401, "Category id and name is required."));
+    return next(new ApiError(401, "Category id and name are required."));
   }
 
   const slug = slugify(name, {
@@ -60,7 +60,7 @@ export const updateCategory = asyncHandler(async (req, res, next) => {
     existingCategory &&
     existingCategory._id.toString() !== categoryId.toString()
   ) {
-    return next(new ApiError(403, "Category is already exits."));
+    return next(new ApiError(403, "Category already exists."));
   }
 
   const category = await Category.findById(categoryId);
@@ -83,12 +83,20 @@ export const fetchCategory = asyncHandler(async (req, res, next) => {
 
   return res
     .status(200)
-    .json(new ApiResponse(200, "Category fetched successfully", categoryList));
+    .json(
+      new ApiResponse(200, "Categories fetched successfully", categoryList)
+    );
 });
 
 export const fetchActiveCategory = asyncHandler(async (req, res, next) => {
   const categoryList = await Category.find({ status: "Active" });
   return res
     .status(200)
-    .json(new ApiResponse(200, "Category fetched successfully", categoryList));
+    .json(
+      new ApiResponse(
+        200,
+        "Active  Categories fetched successfully",
+        categoryList
+      )
+    );
 });

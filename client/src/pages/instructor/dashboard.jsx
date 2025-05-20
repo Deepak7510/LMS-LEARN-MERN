@@ -23,12 +23,11 @@ function InstructorDashboardPage() {
         }, 0)
       : 0;
 
-  console.log(totalAmount);
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {loading ? (
-          Array(8)
+          Array(9)
             .fill(null)
             .map((_, index) => {
               return (

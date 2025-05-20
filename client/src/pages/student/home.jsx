@@ -8,7 +8,7 @@ import CourseCardTileSkeletonDemo from "../../components/student-view/skeleton-u
 
 function StudentHomePage() {
   const navigate = useNavigate();
-  const { data: categoryList, categoryListLoading } = useFetch(
+  const { data: categoryList, loading: categoryListLoading } = useFetch(
     "/api/student/category/fetch-active"
   );
 
@@ -50,7 +50,7 @@ function StudentHomePage() {
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
           {categoryListLoading ? (
-            Array(8)
+            Array(12)
               .fill(null)
               .map((_, index) => {
                 return <Skeleton key={index} className={"w-full h-10"} />;

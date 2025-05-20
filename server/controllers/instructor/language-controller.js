@@ -8,7 +8,7 @@ export const createLanguage = asyncHandler(async (req, res, next) => {
   const { name, status } = req.body;
 
   if (!name) {
-    return next(new ApiError(403, "Language name is required."));
+    return next(new ApiError(400, "Language name is required."));
   }
   const slug = slugify(name, {
     replacement: "-",
@@ -17,7 +17,7 @@ export const createLanguage = asyncHandler(async (req, res, next) => {
 
   const checkLanguage = await Language.findOne({ slug });
   if (checkLanguage) {
-    return next(new ApiError(403, "Language is already exits."));
+    return next(new ApiError(409, "Language already exists."));
   }
 
   const newLanguage = new Language({ name, slug, status });
@@ -46,7 +46,7 @@ export const updateLanguage = asyncHandler(async (req, res, next) => {
   const { name, status } = req.body;
 
   if (!languageId || !name) {
-    return next(new ApiError(401, "Language id and name is required."));
+    return next(new ApiError(401, "Language id and name are required."));
   }
 
   const slug = slugify(name, {
@@ -59,7 +59,7 @@ export const updateLanguage = asyncHandler(async (req, res, next) => {
     existingLanguage &&
     existingLanguage._id.toString() !== languageId.toString()
   ) {
-    return next(new ApiError(403, "Language is already exits."));
+    return next(new ApiError(403, "Language already exists."));
   }
 
   const language = await Language.findById(languageId);
@@ -88,5 +88,11 @@ export const fetchActiveLanguage = asyncHandler(async (req, res, next) => {
   const languageList = await Language.find({ status: "Active" });
   return res
     .status(200)
-    .json(new ApiResponse(200, "Language fetched successfully", languageList));
+    .json(
+      new ApiResponse(
+        200,
+        "Active languages fetched successfully",
+        languageList
+      )
+    );
 });

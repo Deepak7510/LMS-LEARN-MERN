@@ -31,7 +31,7 @@ export const deleteLevel = asyncHandler(async (req, res, next) => {
   const levelId = req.params.id;
 
   if (!levelId) {
-    return next(new ApiError(401, "Level id is required."));
+    return next(new ApiError(400, "Level id is required."));
   }
   await Level.findByIdAndDelete(levelId);
 
@@ -45,7 +45,7 @@ export const updateLevel = asyncHandler(async (req, res, next) => {
   const { name, status } = req.body;
 
   if (!levelId || !name) {
-    return next(new ApiError(401, "Level id and name is required."));
+    return next(new ApiError(401, "Level id and name are required."));
   }
 
   const slug = slugify(name, {
@@ -55,12 +55,12 @@ export const updateLevel = asyncHandler(async (req, res, next) => {
 
   const existingLevel = await Level.findOne({ slug });
   if (existingLevel && existingLevel._id.toString() !== levelId.toString()) {
-    return next(new ApiError(403, "Level is already exits."));
+    return next(new ApiError(403, "Level already exists."));
   }
 
   const level = await Level.findById(levelId);
   if (!level) {
-    return next(new ApiError(403, "Level not found!."));
+    return next(new ApiError(404, "Level not found!."));
   }
 
   level.name = name;
@@ -84,5 +84,7 @@ export const fetchActiveLevel = asyncHandler(async (req, res, next) => {
   const levelList = await Level.find({ status: "Active" });
   return res
     .status(200)
-    .json(new ApiResponse(200, "Level fetched successfully", levelList));
+    .json(
+      new ApiResponse(200, "Active levels fetched successfully", levelList)
+    );
 });

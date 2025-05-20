@@ -18,13 +18,13 @@ export const fetchCourse = asyncHandler(async (req, res, next) => {
   const courseList = await Course.find().sort({ _id: -1 });
   return res
     .status(201)
-    .json(new ApiResponse(201, "All course fetched successfully", courseList));
+    .json(new ApiResponse(201, "Courses fetched successfully", courseList));
 });
 
 export const fetchCourseById = asyncHandler(async (req, res, next) => {
   const courseId = req.params.courseId;
   if (!courseId) {
-    return next(new ApiError(404, "Course id is required."));
+    return next(new ApiError(400, "Course id is required."));
   }
   const course = await Course.findById(courseId);
   return res
@@ -35,7 +35,7 @@ export const fetchCourseById = asyncHandler(async (req, res, next) => {
 export const deleteCourse = asyncHandler(async (req, res, next) => {
   const courseId = req.params.courseId;
   if (!courseId) {
-    return next(new ApiError(404, "Course id is required."));
+    return next(new ApiError(400, "Course id is required."));
   }
   const course = await Course.findByIdAndDelete(courseId);
   for (let curriculumItem of course.curriculum) {
@@ -44,7 +44,7 @@ export const deleteCourse = asyncHandler(async (req, res, next) => {
 
   return res
     .status(201)
-    .json(new ApiResponse(201, "Course fetch successfully", course));
+    .json(new ApiResponse(201, "Course deleted successfully", course));
 });
 
 export const updateCourse = asyncHandler(async (req, res, next) => {

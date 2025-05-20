@@ -23,7 +23,7 @@ export const signupUser = asyncHandler(async (req, res, next) => {
 
   return res
     .status(201)
-    .json(new ApiResponse(201, "User sign up successfully"));
+    .json(new ApiResponse(201, "User signed up successfully"));
 });
 
 export const signinUser = asyncHandler(async (req, res, next) => {
@@ -43,7 +43,7 @@ export const signinUser = asyncHandler(async (req, res, next) => {
 
   const validatePassword = await user.matchPassword(password);
   if (!validatePassword) {
-    return next(new ApiError(409, "Invalid email or username or password"));
+    return next(new ApiError(409, "Invalid email/username or password"));
   }
 
   const payload = {
@@ -64,7 +64,7 @@ export const signinUser = asyncHandler(async (req, res, next) => {
       sameSite: "strict",
     })
     .json(
-      new ApiResponse(200, "Sign in successfully", {
+      new ApiResponse(200, "Signed in successfully", {
         accessToken,
         user: payload,
       })
@@ -91,5 +91,5 @@ export const logoutUser = asyncHandler(async (req, res, next) => {
       maxAge: 0,
     })
     .status(200)
-    .json(new ApiResponse(200, "Logout successfully"));
+    .json(new ApiResponse(200, "Logged out successfully"));
 });

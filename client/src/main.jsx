@@ -24,8 +24,8 @@ createRoot(document.getElementById("root")).render(
                 <StudentCourseContextProvider>
                   <InstructorMessageContextProvider>
                     <App />
+                    <Toaster />
                   </InstructorMessageContextProvider>
-                  <Toaster />
                 </StudentCourseContextProvider>
               </CourseContextProvider>
             </LanguageContextProvider>
