@@ -85,7 +85,23 @@ export const fetchCourseProgressDetails = asyncHandler(
       );
     }
 
-    const course = await Course.findById(courseId);
+    const course = await Course.findById(courseId)
+      .populate({
+        path: "category",
+        select: "name",
+      })
+      .populate({
+        path: "level",
+        select: "name",
+      })
+      .populate({
+        path: "instructor",
+        select: "username",
+      })
+      .populate({
+        path: "primaryLanguage",
+        select: "name",
+      });
     if (!course) {
       return res.status(404).json(new ApiError(404, "Course not found."));
     }
