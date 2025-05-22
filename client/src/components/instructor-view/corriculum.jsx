@@ -99,6 +99,16 @@ function CourseCorriculum({ form }) {
     });
   }
 
+  function handleRemoveCurriculumForm(getIndex) {
+    if (getIndex > 0) {
+      let cpycurriculumFormData = [...curriculumFormData];
+      cpycurriculumFormData = cpycurriculumFormData.filter((_, index) => {
+        return index !== getIndex;
+      });
+      form.setValue("curriculum", cpycurriculumFormData);
+    }
+  }
+
   return (
     <Card className={"shadow-none"}>
       <CardHeader>
@@ -231,6 +241,18 @@ function CourseCorriculum({ form }) {
                               }
                             </p>
                           )}
+                          {curriculumFormData.length > 1 ? (
+                            <div className="flex justify-end">
+                              <Button
+                                onClick={() =>
+                                  handleRemoveCurriculumForm(index)
+                                }
+                                size={"sm"}
+                              >
+                                Remove
+                              </Button>
+                            </div>
+                          ) : null}
                         </div>
                       )}
                     </div>

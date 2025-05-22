@@ -60,7 +60,6 @@ export const markCurrentLectureAsViewed = asyncHandler(
       progress.complitionDate = new Date();
       await progress.save();
     }
-
     res
       .status(200)
       .json(new ApiResponse(200, "Lecture marked as viewed", progress));

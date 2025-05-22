@@ -14,11 +14,11 @@ export const fetchDashboardAllData = asyncHandler(async (req, res, next) => {
     role: { $not: { $eq: "instructor" } },
   }).countDocuments();
 
-  const totalCourses = await Course.find().countDocuments();
-  const totalCategories = await Category.find().countDocuments();
-  const totalLevels = await Level.find().countDocuments();
-  const totalLanguages = await Language.find().countDocuments();
-  const totatNewaLetters = await Newsletter.find().countDocuments();
+  const totalCourses = await Course.countDocuments();
+  const totalCategories = await Category.countDocuments();
+  const totalLevels = await Level.countDocuments();
+  const totalLanguages = await Language.countDocuments();
+  const totatNewaLetters = await Newsletter.countDocuments();
   const totatEnrolledStudentList = await Order.find()
     .select("user course amount")
     .populate({

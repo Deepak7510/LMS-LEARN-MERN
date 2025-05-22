@@ -14,6 +14,7 @@ export async function deleteMediaService(public_id) {
     const response = await axiosInstance.delete(
       `/api/media/delete/${public_id}`
     );
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error.response.data);

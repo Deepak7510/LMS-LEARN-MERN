@@ -4,6 +4,7 @@ import asyncHandler from "../../utils/async-handler.js";
 
 export const studentFetchAllCourse = asyncHandler(async (req, res, next) => {
   const courseList = await Course.find()
+    .limit(8)
     .populate({
       path: "instructor",
       select: "username",

@@ -137,13 +137,13 @@ function StudentContactPage() {
               <p>Address: Balrampur, India</p>
             </div>
             <div className="flex gap-4 mt-3">
-              <Button className={"cursor-pointer rounded-full"}>
+              <Button className={"rounded-full"}>
                 <Facebook className="h-6 w-6" />
               </Button>
-              <Button className={"cursor-pointer rounded-full"}>
+              <Button className={"rounded-full"}>
                 <Instagram className="h-6 w-6" />
               </Button>
-              <Button className={"cursor-pointer rounded-full"}>
+              <Button className={"rounded-full"}>
                 <Linkedin className="h-6 w-6" />
               </Button>
             </div>

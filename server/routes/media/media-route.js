@@ -7,6 +7,6 @@ import {
 const route = express.Router();
 
 route.post("/upload", upload.single("file"), uploadMedia);
-route.delete("/delete/:public_id", deleteMedia);
+route.delete("/delete/:folderName/:public_id", deleteMedia);
 
 export default route;

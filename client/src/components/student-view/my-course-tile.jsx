@@ -26,7 +26,7 @@ function MyCourseTile({ courseDetails }) {
         <Button
           size={"sm"}
           onClick={() => navigate(`/course-progress/${courseDetails._id}`)}
-          className={"w-full cursor-pointer"}
+          className={"w-full"}
         >
           Start Watching
         </Button>

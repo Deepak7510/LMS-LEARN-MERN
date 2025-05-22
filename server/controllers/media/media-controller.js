@@ -19,9 +19,11 @@ export const uploadMedia = asyncHandler(async (req, res, next) => {
 
 export const deleteMedia = asyncHandler(async (req, res, next) => {
   const public_id = req.params.public_id;
-  if (!public_id) {
+  const folderName = req.params.folderName;
+  const newPublicId = +folderName + "/" + public_id;
+  if (!newPublicId) {
     return next(new ApiError(403, "Somthing went worng."));
   }
-  await destroyMediaToCloudinary(public_id);
+  await destroyMediaToCloudinary(newPublicId);
   res.status(200).json(new ApiResponse(200, "File deleted successfully"));
 });

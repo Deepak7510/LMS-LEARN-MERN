@@ -62,7 +62,7 @@ function StudentHomePage() {
                   variant={"outline"}
                   key={item._id}
                   onClick={() => handleCategoryRedirect(item._id)}
-                  className={`text-xs px-0.5 md:text-sm py-1.5 shadow-sm line-clamp-1 rounded-sm bg-gray-50 border-gray-200 dark:border-gray-800 dark:bg-gray-900/20 cursor-pointer`}
+                  className={`text-xs px-0.5 md:text-sm py-1.5 shadow-sm line-clamp-1 rounded-sm bg-gray-50 border-gray-200 dark:border-gray-800 dark:bg-gray-900/20`}
                 >
                   {item.name}
                 </Button>

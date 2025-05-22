@@ -13,7 +13,7 @@ function InstructorHeader() {
     <header
       className={`${
         theme === "dark" ? "bg-zinc-950" : theme === "light" ? "bg-white" : ""
-      } flex justify-between px-2 md:px-4 py-3 sticky top-0 w-full border-b-2`}
+      } flex justify-between px-2 md:px-4 py-3 sticky top-0 w-full border-b-2 z-50`}
     >
       <Button onClick={toggleSidebar} variant="none">
         <AlignJustify style={{ width: "25px", height: "25px" }} />
