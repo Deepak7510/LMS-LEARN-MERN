@@ -246,13 +246,13 @@ function StudentCourseProgressPage() {
                                 }
                               </span>
                             </div>
-                            <h1 className="text-white text-lg md:text-2xl font-semibold">
+                            <h1 className="text-lg md:text-2xl font-semibold">
                               {progressCourseDetails?.courseDetails?.title}
                             </h1>
-                            <h2 className="text-white text-sm md:text-base font-medium">
+                            <h2 className="text-sm md:text-base font-medium">
                               {progressCourseDetails?.courseDetails?.subTitle}
                             </h2>
-                            <p className="text-white text-xs md:text-sm">
+                            <p className="text-xs md:text-sm">
                               Created by{" "}
                               <span className="text-purple-400">
                                 {
@@ -261,7 +261,7 @@ function StudentCourseProgressPage() {
                                 }
                               </span>
                             </p>
-                            <div className="text-white flex gap-3">
+                            <div className="flex gap-3">
                               <div className="flex items-center gap-2">
                                 <Calendar className="h-3 w-3" />
                                 <span className="text-xs md:text-sm">
