@@ -1,5 +1,4 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { HashLoader } from "react-spinners";
 import HashLoaderProvider from "../common/HashLoader";
 
 function ProtectRoute({ isAuthenticated, user, loading, children }) {
@@ -9,7 +8,15 @@ function ProtectRoute({ isAuthenticated, user, loading, children }) {
     return <HashLoaderProvider />;
   }
 
-  if (!isAuthenticated && !location.pathname.includes("/auth")) {
+  if (
+    !isAuthenticated &&
+    (location.pathname.includes("/course-progress") ||
+      location.pathname.includes("/my-courses"))
+  ) {
+    return <Navigate to={"/"} />;
+  }
+
+  if (!isAuthenticated && location.pathname.includes("instructor")) {
     return <Navigate to={"/auth"} />;
   }
 

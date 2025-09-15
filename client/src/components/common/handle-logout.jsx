@@ -16,7 +16,6 @@ import {
 
 function HandleLogout({ children }) {
   const { checkAuthUser } = useContext(AuthContext);
-
   async function handleLogout() {
     const result = await logoutUserService();
     if (result.success) {
@@ -32,9 +31,7 @@ function HandleLogout({ children }) {
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>
-            Are you sure you want to Sign Out?
-          </AlertDialogTitle>
+          <AlertDialogTitle>Are you sure you want to Logout?</AlertDialogTitle>
           <AlertDialogDescription>
             You will be Signed out of your account. You can Sign in again
             anytime.
@@ -42,7 +39,7 @@ function HandleLogout({ children }) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleLogout}>Sign Out</AlertDialogAction>
+          <AlertDialogAction onClick={handleLogout}>Logout</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

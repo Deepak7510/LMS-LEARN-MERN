@@ -1,20 +1,11 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-
+import { Card, CardContent } from "@/components/ui/card";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -51,7 +42,6 @@ function StudentContactPage() {
 
   async function onSubmit(formData) {
     const result = await createMessageService(formData);
-    console.log(result);
     if (result.success) {
       toast.success(result.message);
       form.reset();
@@ -67,11 +57,7 @@ function StudentContactPage() {
         <strong>Billing</strong>, or <strong>Technical Support</strong>, please
         don't hesitate to get in touch with us.
       </div>
-      <Card
-        className={
-          "bg-gray-50 dark:bg-gray-900/20 border-gray-200 dark:border-gray-800 m-2"
-        }
-      >
+      <Card className="bg-gray-50 dark:bg-gray-900/20 border-gray-200 dark:border-gray-800 m-2">
         <CardContent className={"grid grid-cols-1 md:grid-cols-2"}>
           <div className="p-2 md:p-10 md:border-r-1">
             <Form {...form}>

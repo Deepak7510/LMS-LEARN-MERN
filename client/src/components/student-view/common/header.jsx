@@ -3,18 +3,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../../ui/button";
 import HandleLogout from "../../common/handle-logout";
 import { ModeToggle } from "@/components/theme/mode-toggle";
-import { useTheme } from "@/components/theme/theme-provider";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { useState } from "react";
 import { Label } from "@/components/ui/label";
-import { Skeleton } from "@/components/ui/skeleton";
-Skeleton;
-function StudentHeaderNav() {
+import { useContext } from "react";
+import { AuthContext } from "@/context/auth-context";
+
+function StudentHeaderNav({ authData }) {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -36,9 +31,11 @@ function StudentHeaderNav() {
             Courses
           </div>
         </li>
-        <li>
-          <Link to={"/my-courses"}>My Courses</Link>
-        </li>
+        {authData?.isAuthenticated === true && (
+          <li>
+            <Link to={"/my-courses"}>My Courses</Link>
+          </li>
+        )}
         <li>
           <Link to={"/about-us"}>About us</Link>
         </li>
@@ -50,26 +47,30 @@ function StudentHeaderNav() {
   );
 }
 
-function StudentHeaderRightSideContent() {
+function StudentHeaderRightSideContent({ authData }) {
   return (
     <div className="flex items-center space-x-2">
-      <HandleLogout>
-        <Button>Sign Out</Button>
-      </HandleLogout>
       <ModeToggle />
+      {authData?.isAuthenticated ? (
+        <HandleLogout>
+          <Button size={"sm"}>Logout</Button>
+        </HandleLogout>
+      ) : (
+        <Button>
+          <Link to={"/auth"}>Login</Link>
+        </Button>
+      )}
     </div>
   );
 }
 
 function StudentHeader() {
-  const { theme } = useTheme();
   const [openSideNavbar, setOpenSideNavbar] = useState(false);
+  const { authData } = useContext(AuthContext);
 
   return (
     <header
-      className={`${
-        theme === "dark" ? "bg-zinc-950" : theme === "light" ? "bg-white" : ""
-      } flex justify-between items-center shadow fixed w-full border-b-2 py-3 px-6 z-10 select-none`}
+      className={`bg-background flex justify-between items-center shadow fixed w-full border-b-2 py-3 px-6 z-10 select-none`}
     >
       <div className="flex items-center space-x-4">
         <Link to={"/home"} className="flex items-center gap-3">
@@ -79,10 +80,10 @@ function StudentHeader() {
       </div>
 
       <div className="hidden md:block">
-        <StudentHeaderNav />
+        <StudentHeaderNav authData={authData} />
       </div>
       <div className="hidden md:block">
-        <StudentHeaderRightSideContent />
+        <StudentHeaderRightSideContent authData={authData} />
       </div>
 
       <div className="md:hidden">

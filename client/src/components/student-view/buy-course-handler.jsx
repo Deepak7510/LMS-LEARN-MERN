@@ -13,6 +13,9 @@ function BuyCourseHandler({ courseDetails }) {
   const { authData } = useContext(AuthContext);
 
   async function handleBuyCourse() {
+    if (!authData.isAuthenticated) {
+      return toast.error("Please login for by the course");
+    }
     const formData = {
       course: courseDetails._id,
       amount: courseDetails.pricing,

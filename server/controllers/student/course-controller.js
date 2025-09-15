@@ -12,7 +12,7 @@ export const studentFetchAllCourse = asyncHandler(async (req, res, next) => {
     .sort({ _id: -1 });
   return res
     .status(200)
-    .json(new ApiResponse(200, "Category fetched successfully", courseList));
+    .json(new ApiResponse(200, "Course fetched successfully", courseList));
 });
 
 export const studentFetchCourseById = asyncHandler(async (req, res, next) => {
