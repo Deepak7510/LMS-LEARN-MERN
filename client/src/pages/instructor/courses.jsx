@@ -18,7 +18,7 @@ function InstructorCoursePage() {
   const { courseList, loading, fetchData } = useContext(CourseContext);
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   return (
     <Card className={"shadow-none"}>

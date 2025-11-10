@@ -30,7 +30,7 @@ function InstructorMessagePage() {
 
   useEffect(() => {
     fetchMessageList();
-  }, [fetchMessageList]);
+  }, []);
 
   function handleViewMessageInDetails(getViewtMessageInDetails) {
     setOpenViewMessageInDetailsDialog(true);

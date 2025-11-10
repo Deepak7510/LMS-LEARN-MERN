@@ -41,7 +41,7 @@ function StudentCourseDetailsPage() {
 
   useEffect(() => {
     fetchCourseDetailsData(courseId);
-  }, [courseId, fetchCourseDetailsData]);
+  }, [courseId]);
 
   useEffect(() => {
     checkCurseBuyStatusService(courseId).then((result) => {

@@ -40,11 +40,11 @@ function StudentCoursePage() {
     } else {
       fetchData({}, sort);
     }
-  }, [sort, fetchData]);
+  }, [sort]);
 
   useEffect(() => {
     if (filter !== null && sort !== null) fetchData(filter, sort);
-  }, [filter, sort, fetchData]);
+  }, [filter, sort]);
 
   useEffect(() => {
     return () => {

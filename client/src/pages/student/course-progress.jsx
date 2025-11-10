@@ -68,7 +68,7 @@ function StudentCourseProgressPage() {
 
   useEffect(() => {
     fetchCourseProgress(courseId);
-  }, [courseId, fetchCourseProgress]);
+  }, [courseId]);
 
   useEffect(() => {
     if (lockCourse === false) {
