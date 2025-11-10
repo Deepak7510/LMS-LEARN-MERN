@@ -22,14 +22,14 @@ function StudentCoursePage() {
     useContext(StudentCourseContext);
   const [filter, setFilter] = useState({});
   const [sort, setSort] = useState("price-lowtohigh");
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [_, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     if (filter && Object.keys(filter).length > 0) {
       const paramsValue = createSearchParams(filter);
       setSearchParams(new URLSearchParams(paramsValue));
     }
-  }, [filter]);
+  }, [filter, setSearchParams]);
 
   useEffect(() => {
     const stored = sessionStorage.getItem("filter");
@@ -40,11 +40,11 @@ function StudentCoursePage() {
     } else {
       fetchData({}, sort);
     }
-  }, []);
+  }, [sort, fetchData]);
 
   useEffect(() => {
     if (filter !== null && sort !== null) fetchData(filter, sort);
-  }, [filter, sort]);
+  }, [filter, sort, fetchData]);
 
   useEffect(() => {
     return () => {

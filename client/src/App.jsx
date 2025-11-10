@@ -1,28 +1,64 @@
-import { useContext } from "react";
-import "./App.css";
+import React, { Suspense, useContext } from "react";
 import { Route, Routes } from "react-router-dom";
-import AuthPage from "./pages/auth";
+import "./App.css";
+
 import ProtectRoute from "./components/protect-route";
-import { AuthContext } from "./context/auth-context";
-import StudentLayout from "./components/student-view/common/layout";
-import StudentHomePage from "./pages/student/home";
-import NotFoundPage from "./pages/not-found";
-import InstructorCourseCategoryPage from "./pages/instructor/course-category";
-import InstructorDashboardPage from "./pages/instructor/dashboard";
-import InstructorCourseLevelPage from "./pages/instructor/course-level";
-import InstructorAddCoursePage from "./pages/instructor/add-new-courses";
-import InstructorCoursePage from "./pages/instructor/courses";
-import InstructorCourseLanguagePage from "./pages/instructor/course-language";
-import InstructorLayout from "./components/instructor-view/common/layout";
-import StudentCoursePage from "./pages/student/courses";
-import StudentCourseDetailsPage from "./pages/student/course-details";
-import StudentMyCoursesPage from "./pages/student/my-courses";
-import StudentCourseProgressPage from "./pages/student/course-progress";
-import StudentAboutUsPage from "./pages/student/aboutus";
-import StudentContactPage from "./pages/student/contact";
-import InstructorMessagePage from "./pages/instructor/message";
-import InstructorNewsLetterPage from "./pages/instructor/news-letter";
 import ScrollToTop from "./components/common/ScrollToTop";
+import HashLoaderProvider from "./components/common/HashLoader";
+import NotFoundPage from "./pages/not-found";
+import { AuthContext } from "./context/auth-context";
+
+// ===== Lazy Imports ===== //
+const AuthPage = React.lazy(() => import("./pages/auth"));
+
+// ---- Student ---- //
+const StudentLayout = React.lazy(() =>
+  import("./components/student-view/common/layout")
+);
+const StudentHomePage = React.lazy(() => import("./pages/student/home"));
+const StudentContactPage = React.lazy(() => import("./pages/student/contact"));
+const StudentCoursePage = React.lazy(() => import("./pages/student/courses"));
+const StudentCourseDetailsPage = React.lazy(() =>
+  import("./pages/student/course-details")
+);
+const StudentMyCoursesPage = React.lazy(() =>
+  import("./pages/student/my-courses")
+);
+const StudentCourseProgressPage = React.lazy(() =>
+  import("./pages/student/course-progress")
+);
+const StudentAboutUsPage = React.lazy(() => import("./pages/student/aboutus"));
+
+// ---- Instructor ---- //
+const InstructorLayout = React.lazy(() =>
+  import("./components/instructor-view/common/layout")
+);
+const InstructorDashboardPage = React.lazy(() =>
+  import("./pages/instructor/dashboard")
+);
+const InstructorCourseCategoryPage = React.lazy(() =>
+  import("./pages/instructor/course-category")
+);
+const InstructorCourseLevelPage = React.lazy(() =>
+  import("./pages/instructor/course-level")
+);
+const InstructorCourseLanguagePage = React.lazy(() =>
+  import("./pages/instructor/course-language")
+);
+const InstructorCoursePage = React.lazy(() =>
+  import("./pages/instructor/courses")
+);
+const InstructorAddCoursePage = React.lazy(() =>
+  import("./pages/instructor/add-new-courses")
+);
+const InstructorMessagePage = React.lazy(() =>
+  import("./pages/instructor/message")
+);
+const InstructorNewsLetterPage = React.lazy(() =>
+  import("./pages/instructor/news-letter")
+);
+
+// ===================================================== //
 
 function App() {
   const {
@@ -33,87 +69,95 @@ function App() {
   return (
     <>
       <ScrollToTop />
-      <Routes>
-        <Route
-          path="/auth"
-          element={
-            <ProtectRoute
-              isAuthenticated={isAuthenticated}
-              user={user}
-              loading={loading}
-            >
-              <AuthPage />
-            </ProtectRoute>
-          }
-        ></Route>
+      <Suspense fallback={<HashLoaderProvider />}>
+        <Routes>
+          {/* ===== Auth Route ===== */}
+          <Route
+            path="/auth"
+            element={
+              <ProtectRoute
+                isAuthenticated={isAuthenticated}
+                user={user}
+                loading={loading}
+              >
+                <AuthPage />
+              </ProtectRoute>
+            }
+          />
 
-        <Route
-          path="/"
-          element={
-            <ProtectRoute
-              isAuthenticated={isAuthenticated}
-              user={user}
-              loading={loading}
-            >
-              <StudentLayout />
-            </ProtectRoute>
-          }
-        >
-          <Route index element={<StudentHomePage />} />
-          <Route index path="home" element={<StudentHomePage />} />
-          <Route index path="courses" element={<StudentCoursePage />} />
-          <Route index path="/about-us" element={<StudentAboutUsPage />} />
-          <Route index path="/contact" element={<StudentContactPage />} />
+          {/* ===== Student Routes ===== */}
+          <Route
+            path="/"
+            element={
+              <ProtectRoute
+                isAuthenticated={isAuthenticated}
+                user={user}
+                loading={loading}
+              >
+                <StudentLayout />
+              </ProtectRoute>
+            }
+          >
+            <Route index element={<StudentHomePage />} />
+            <Route path="home" element={<StudentHomePage />} />
+            <Route path="courses" element={<StudentCoursePage />} />
+            <Route path="about-us" element={<StudentAboutUsPage />} />
+            <Route path="contact" element={<StudentContactPage />} />
+            <Route
+              path="course-details/:courseId"
+              element={<StudentCourseDetailsPage />}
+            />
+            <Route path="my-courses" element={<StudentMyCoursesPage />} />
+            <Route
+              path="course-progress/:courseId"
+              element={<StudentCourseProgressPage />}
+            />
+          </Route>
 
+          {/* ===== Instructor Routes ===== */}
           <Route
-            index
-            path="course-details/:courseId"
-            element={<StudentCourseDetailsPage />}
-          />
-          <Route index path="my-courses" element={<StudentMyCoursesPage />} />
-          <Route
-            index
-            path="course-progress/:courseId"
-            element={<StudentCourseProgressPage />}
-          />
-        </Route>
+            path="/instructor"
+            element={
+              <ProtectRoute
+                isAuthenticated={isAuthenticated}
+                user={user}
+                loading={loading}
+              >
+                <InstructorLayout />
+              </ProtectRoute>
+            }
+          >
+            <Route index element={<InstructorDashboardPage />} />
+            <Route path="dashboard" element={<InstructorDashboardPage />} />
+            <Route
+              path="course-category"
+              element={<InstructorCourseCategoryPage />}
+            />
+            <Route
+              path="course-level"
+              element={<InstructorCourseLevelPage />}
+            />
+            <Route
+              path="course-language"
+              element={<InstructorCourseLanguagePage />}
+            />
+            <Route path="courses" element={<InstructorCoursePage />} />
+            <Route
+              path="add-new-course"
+              element={<InstructorAddCoursePage />}
+            />
+            <Route
+              path="edit-course/:id"
+              element={<InstructorAddCoursePage />}
+            />
+            <Route path="message" element={<InstructorMessagePage />} />
+            <Route path="newsletter" element={<InstructorNewsLetterPage />} />
+          </Route>
 
-        <Route
-          path="/instructor"
-          element={
-            <ProtectRoute
-              isAuthenticated={isAuthenticated}
-              user={user}
-              loading={loading}
-            >
-              <InstructorLayout />
-            </ProtectRoute>
-          }
-        >
-          <Route index element={<InstructorDashboardPage />} />
-          <Route path="dashboard" element={<InstructorDashboardPage />} />
-          <Route
-            path="course-category"
-            element={<InstructorCourseCategoryPage />}
-          />
-          <Route path="course-level" element={<InstructorCourseLevelPage />} />
-          <Route
-            path="course-language"
-            element={<InstructorCourseLanguagePage />}
-          />
-          <Route path="courses" element={<InstructorCoursePage />} />
-          <Route path="add-new-course" element={<InstructorAddCoursePage />} />
-          <Route path="edit-course/:id" element={<InstructorAddCoursePage />} />
-          <Route index path="message" element={<InstructorMessagePage />} />
-          <Route
-            index
-            path="newsletter"
-            element={<InstructorNewsLetterPage />}
-          />
-        </Route>
-
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+          {/* ===== 404 Page ===== */}
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }

@@ -11,6 +11,7 @@ function CourseCardTile({ courseDetails }) {
       <CardContent className={"px-2.5 space-y-2"}>
         <div className="w-full h-44 md:h-40 rounded-lg overflow-hidden">
           <img
+            loading="lazy"
             src={courseDetails.image.image_url}
             className="h-full w-full object-cover"
             alt="course-image"

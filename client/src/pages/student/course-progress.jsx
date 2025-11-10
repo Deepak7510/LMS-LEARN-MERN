@@ -68,7 +68,7 @@ function StudentCourseProgressPage() {
 
   useEffect(() => {
     fetchCourseProgress(courseId);
-  }, [courseId]);
+  }, [courseId, fetchCourseProgress]);
 
   useEffect(() => {
     if (lockCourse === false) {
@@ -76,7 +76,7 @@ function StudentCourseProgressPage() {
         navigate(`/course-details/${courseId}`);
       }, 3000);
     }
-  }, [lockCourse]);
+  }, [lockCourse, courseId, navigate]);
 
   async function markCurrentCourseProgres(getcourseId, getlectureId) {
     const result = await markCurrentCourseProgressService(

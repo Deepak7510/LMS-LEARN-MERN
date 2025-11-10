@@ -49,7 +49,7 @@ function InstructorCourseLevelPage() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   const [editId, setEditId] = useState(null);
   const form = useForm({

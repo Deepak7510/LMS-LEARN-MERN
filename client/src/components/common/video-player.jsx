@@ -14,7 +14,7 @@ function VideoPlayer({
     if (played === 1 && onUpdateProgress && currentLecture) {
       onUpdateProgress({ ...currentLecture, progressValue: 1 });
     }
-  }, [played]);
+  }, [played, currentLecture, onUpdateProgress]);
 
   function handleProgress({ played }) {
     setPlayed(played);

@@ -12,9 +12,7 @@ import {
 import useFetch from "@/hooks/useFetch";
 
 function InstructorDashboardPage() {
-  const { data, loading, fetchData } = useFetch(
-    "/api/instructor/dashboard/fetch"
-  );
+  const { data, loading } = useFetch("/api/instructor/dashboard/fetch");
 
   const totalAmount =
     data && data.totatEnrolledStudentList.length > 0
@@ -31,7 +29,7 @@ function InstructorDashboardPage() {
             .fill(null)
             .map((_, index) => {
               return (
-                <Card className={`shadow-none`}>
+                <Card key={index} className={`shadow-none`}>
                   <CardContent
                     className={
                       "flex flex-col justify-center items-center gap-2"

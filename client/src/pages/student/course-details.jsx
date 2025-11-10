@@ -41,7 +41,7 @@ function StudentCourseDetailsPage() {
 
   useEffect(() => {
     fetchCourseDetailsData(courseId);
-  }, [courseId]);
+  }, [courseId, fetchCourseDetailsData]);
 
   useEffect(() => {
     checkCurseBuyStatusService(courseId).then((result) => {
@@ -51,7 +51,7 @@ function StudentCourseDetailsPage() {
         }
       }
     });
-  }, [courseId]);
+  }, [courseId, navigate]);
 
   const freePreviewDataIndex =
     courseDetails !== null

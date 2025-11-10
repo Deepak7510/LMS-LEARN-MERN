@@ -11,7 +11,7 @@ import {
   updateCourseService,
 } from "@/service/instructor/course";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
@@ -115,7 +115,7 @@ function InstructorAddCoursePage() {
       }
       fetchData();
     }
-  }, [id]);
+  }, [id, navigate, form, location.pathname]);
 
   return (
     <FormProvider {...form}>

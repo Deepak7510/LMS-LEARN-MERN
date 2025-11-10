@@ -52,7 +52,7 @@ function FilterCoursesSidebar({ filter, handleFilter }) {
                             Object.keys(filter).length > 0 &&
                             filter["category"]?.indexOf(item._id) > -1
                           }
-                          onCheckedChange={(_) => {
+                          onCheckedChange={() => {
                             handleFilter("category", item._id);
                           }}
                         />
@@ -90,7 +90,7 @@ function FilterCoursesSidebar({ filter, handleFilter }) {
                             Object.keys(filter).length > 0 &&
                             filter["level"]?.indexOf(item._id) > -1
                           }
-                          onCheckedChange={(_) => {
+                          onCheckedChange={() => {
                             handleFilter("level", item._id);
                           }}
                         />
@@ -126,7 +126,7 @@ function FilterCoursesSidebar({ filter, handleFilter }) {
                             Object.keys(filter).length > 0 &&
                             filter["language"]?.indexOf(item._id) > -1
                           }
-                          onCheckedChange={(_) => {
+                          onCheckedChange={() => {
                             handleFilter("language", item._id);
                           }}
                         />

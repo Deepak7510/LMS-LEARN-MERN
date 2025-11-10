@@ -1,5 +1,5 @@
 import { fetchLevelService } from "@/service/instructor/level";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const LevelContext = createContext(null);
 function LevelContextProvider({ children }) {

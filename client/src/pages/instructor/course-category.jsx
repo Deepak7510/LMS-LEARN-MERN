@@ -50,7 +50,7 @@ function InstructorCourseCategoryPage() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   const form = useForm({
     resolver: zodResolver(formSchema),

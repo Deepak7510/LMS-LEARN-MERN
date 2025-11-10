@@ -12,7 +12,7 @@ function StudentMyCoursesPage() {
 
   useEffect(() => {
     fetchMyCourseList();
-  }, []);
+  }, [fetchMyCourseList]);
 
   return (
     <div className="w-full py-18 px-4 sm:px-6 lg:px-10 xl:px-28">

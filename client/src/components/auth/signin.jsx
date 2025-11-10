@@ -21,7 +21,6 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { signinUserService } from "@/service/auth";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "@/context/auth-context";
 const formSchema = z.object({
@@ -31,7 +30,6 @@ const formSchema = z.object({
 
 function SignIn() {
   const { setAuthData } = useContext(AuthContext);
-  const navigae = useNavigate();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {

@@ -1,5 +1,5 @@
 import { fetchCategoryService } from "@/service/instructor/category";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const CategoryContext = createContext(null);
 

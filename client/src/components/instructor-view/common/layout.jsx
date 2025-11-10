@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { SidebarProvider } from "../../ui/sidebar";
 import InstructorSidebar from "./sidebar";
-import { Button } from "../../ui/button";
 import InstructorHeader from "./header";
 
 function InstructorLayout() {

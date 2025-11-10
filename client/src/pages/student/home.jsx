@@ -5,6 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useNavigate } from "react-router-dom";
 import CourseCardTile from "@/components/student-view/course-card-tile";
 import CourseCardTileSkeletonDemo from "../../components/student-view/skeleton-ui/course-card-tile-skeleton";
+import { useCallback } from "react";
 
 function StudentHomePage() {
   const navigate = useNavigate();
@@ -16,13 +17,16 @@ function StudentHomePage() {
     "/api/student/course/fetch"
   );
 
-  function handleCategoryRedirect(getCategoryValue) {
-    sessionStorage.setItem(
-      "filter",
-      JSON.stringify({ category: [getCategoryValue] })
-    );
-    return navigate("/courses");
-  }
+  const handleCategoryRedirect = useCallback(
+    (categoryId) => {
+      sessionStorage.setItem(
+        "filter",
+        JSON.stringify({ category: [categoryId] })
+      );
+      navigate("/courses");
+    },
+    [navigate]
+  );
 
   return (
     <div className="min-h-screen space-y-5 md:space-y-10 py-18 px-4 sm:px-6 lg:px-10 xl:px-28">
@@ -37,6 +41,7 @@ function StudentHomePage() {
         </div>
         <div className="w-full h-full">
           <img
+            loading="lazy"
             src={bannerImg}
             alt="banner-img"
             className="h-full w-full shadow-lg rounded-lg object-cover"
